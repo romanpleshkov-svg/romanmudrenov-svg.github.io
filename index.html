@@ -76,8 +76,8 @@
         .chat-area::-webkit-scrollbar-thumb { background: rgba(136, 152, 170, 0.25); border-radius: 4px; }
 
         .msg {
-            max-width: 96%; padding: 10px 12px; border-radius: 16px;
-            font-size: 0.85rem; line-height: 1.4; animation: popUp 0.2s ease forwards;
+            max-width: 98%; padding: 10px 12px; border-radius: 16px;
+            font-size: 0.88rem; line-height: 1.4; animation: popUp 0.2s ease forwards;
             word-wrap: break-word; display: flex; flex-direction: column; gap: 8px;
         }
         @keyframes popUp {
@@ -95,33 +95,33 @@
             border-bottom-right-radius: 4px; box-shadow: 0 5px 12px rgba(245, 54, 92, 0.2); max-width: 80%;
         }
 
-        /* Увеличенная и более широкая карусель карточек */
+        /* Широкая и удобная карусель карточек */
         .carousel {
             display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 10px 4px;
             width: 100%; scroll-snap-type: x mandatory;
         }
-        .carousel::-webkit-scrollbar { height: 5px; }
+        .carousel::-webkit-scrollbar { height: 6px; }
         .carousel::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
         .product-card {
-            min-width: 175px; max-width: 175px; background: #fff; border-radius: 16px;
-            padding: 8px; scroll-snap-align: start; box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            min-width: 200px; max-width: 200px; background: #fff; border-radius: 18px;
+            padding: 10px; scroll-snap-align: start; box-shadow: 0 6px 18px rgba(0,0,0,0.07);
             border: 1px solid #e9ecef; display: flex; flex-direction: column; flex-shrink: 0; cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.15s ease;
         }
         .product-card:active { transform: scale(0.97); }
-        .product-card img { width: 100%; height: 125px; object-fit: cover; border-radius: 10px; }
-        .p-tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 6px; }
-        .p-title { font-weight: 700; font-size: 0.88rem; margin: 2px 0; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .p-desc { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.2; height: 28px; overflow: hidden; }
+        .product-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; }
+        .p-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 8px; }
+        .p-title { font-weight: 700; font-size: 0.95rem; margin: 2px 0; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .p-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.25; height: 32px; overflow: hidden; }
         .p-footer {
             margin-top: auto; display: flex; align-items: center; justify-content: space-between;
-            padding-top: 6px; border-top: 1px solid #f6f9fc;
+            padding-top: 8px; border-top: 1px solid #f6f9fc;
         }
-        .p-price { font-weight: 700; font-size: 0.85rem; color: var(--text-main); }
+        .p-price { font-weight: 700; font-size: 0.92rem; color: var(--text-main); }
         .btn-buy {
-            background: var(--gradient); color: #fff; border: none; padding: 5px 9px;
-            border-radius: 8px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
+            background: var(--gradient); color: #fff; border: none; padding: 6px 12px;
+            border-radius: 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
         }
 
         .widget-card { background: var(--surface); border-radius: 14px; padding: 8px; border: 1px solid #e9ecef; width: 100%; }
@@ -155,7 +155,7 @@
             display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(245, 54, 92, 0.35); flex-shrink: 0;
         }
 
-        /* Модальные окна (Корзина и Карточка товара) */
+        /* Модальные окна */
         .modal-overlay {
             position: absolute; inset: 0; background: rgba(50, 50, 93, 0.5);
             backdrop-filter: blur(5px); z-index: 50; display: none; align-items: flex-end; justify-content: center;
@@ -169,11 +169,11 @@
         .close-sheet { background: #f6f9fc; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f6f9fc; font-size: 0.85rem; }
 
-        /* Стили карточки товара при клике */
-        .product-modal-img { width: 100%; height: 230px; object-fit: cover; border-radius: 16px; margin-bottom: 8px; }
-        .product-modal-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
-        .product-modal-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin: 4px 0 10px; }
-        .product-modal-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 14px; }
+        /* Большая карточка товара */
+        .product-modal-img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; margin-bottom: 10px; }
+        .product-modal-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-main); }
+        .product-modal-price { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 4px 0 10px; }
+        .product-modal-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 16px; }
     </style>
 </head>
 <body>
@@ -224,7 +224,7 @@
         </div>
     </div>
 
-    <!-- Модалка карточки конкретного букета -->
+    <!-- Модалка карточки товара -->
     <div class="modal-overlay" id="productModal">
         <div class="bottom-sheet" id="productModalContent"></div>
     </div>
@@ -252,24 +252,24 @@
 
     let cart = [];
 
-    // Полное портфолио без сумок (только реальные премиум цветы)
+    // Чистый каталог 100% из премиальных цветов и букетов
     const products = [
-        { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы Остина, эвкалипт, атласная лента', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=500&q=80' },
-        { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Французские пионы Сара Бернар и пышная гортензия', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=500&q=80' },
-        { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Голландские тюльпаны, ранункулюсы и гипсофила', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=500&q=80' },
-        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Бархатные красные розы в дизайнерской шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80' },
-        { id: 5, category: 'portfolio', tag: 'Эксклюзив', title: 'Прованский сад', desc: 'Горная лаванда, ароматная маттиола и кустовые розы', price: 5100, img: 'https://images.unsplash.com/photo-1508766917636-f65f717c1293?auto=format&fit=crop&w=500&q=80' },
-        { id: 6, category: 'portfolio', tag: 'Яркий микс', title: 'Солнечный день', desc: 'Желтые тюльпаны, солнечная мимоза и зелень', price: 4200, img: 'https://images.unsplash.com/photo-1533855049397-9419d12f3e8f?auto=format&fit=crop&w=500&q=80' },
-        { id: 7, category: 'portfolio', tag: 'Роскошь', title: 'Красный бархат', desc: '101 премиальная длинная красная роза с оформлением', price: 12500, img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=500&q=80' },
-        { id: 8, category: 'portfolio', tag: 'Свежесть', title: 'Морской бриз', desc: 'Синие дельфиниумы, белые эустомы и солидаго', price: 4800, img: 'https://images.unsplash.com/photo-1562690868-60bbe7293e94?auto=format&fit=crop&w=500&q=80' },
-        { id: 9, category: 'portfolio', tag: 'Стиль', title: 'Зимняя вишня', desc: 'Темные каллы, бордовые пионы и декоративные ветки', price: 6200, img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=500&q=80' },
-        { id: 10, category: 'portfolio', tag: 'Нежность', title: 'Ангельское дыхание', desc: 'Белые кустовые розы и пушистые хризантемы', price: 3600, img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=500&q=80' },
-        { id: 11, category: 'portfolio', tag: 'Арт-дизайн', title: 'Акварель', desc: 'Нежные ранункулюсы, анемоны и сезонная зелень', price: 5900, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=500&q=80' },
-        { id: 12, category: 'portfolio', tag: 'Премиум', title: 'Королевский шарм', desc: 'Роскошная композиция из крупных гортензий и орхидей', price: 9500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=500&q=80' }
+        { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы Остина, эвкалипт', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80' },
+        { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Французские пионы, гортензия', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80' },
+        { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Тюльпаны, гипсофила, ранункулюсы', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80' },
+        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Красные розы в шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80' },
+        { id: 5, category: 'portfolio', tag: 'Эксклюзив', title: 'Прованский сад', desc: 'Лаванда, маттиола и кустовые розы', price: 5100, img: 'https://images.unsplash.com/photo-1508766917636-f65f717c1293?auto=format&fit=crop&w=600&q=80' },
+        { id: 6, category: 'portfolio', tag: 'Яркий микс', title: 'Солнечный день', desc: 'Желтые тюльпаны и мимоза', price: 4200, img: 'https://images.unsplash.com/photo-1533855049397-9419d12f3e8f?auto=format&fit=crop&w=600&q=80' },
+        { id: 7, category: 'portfolio', tag: 'Роскошь', title: 'Красный бархат', desc: '101 премиальная длинная роза', price: 12500, img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=600&q=80' },
+        { id: 8, category: 'portfolio', tag: 'Свежесть', title: 'Морской бриз', desc: 'Синие дельфиниумы, белые эустомы', price: 4800, img: 'https://images.unsplash.com/photo-1562690868-60bbe7293e94?auto=format&fit=crop&w=600&q=80' },
+        { id: 9, category: 'portfolio', tag: 'Стиль', title: 'Зимняя вишня', desc: 'Темные каллы, бордовые пионы', price: 6200, img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80' },
+        { id: 10, category: 'portfolio', tag: 'Нежность', title: 'Ангельское дыхание', desc: 'Белые кустовые розы, хризантемы', price: 3600, img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80' },
+        { id: 11, category: 'portfolio', tag: 'Арт-дизайн', title: 'Акварель', desc: 'Ранункулюсы, анемоны и зелень', price: 5900, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80' },
+        { id: 12, category: 'portfolio', tag: 'Премиум', title: 'Королевский шарм', desc: 'Гортензии и экзотические орхидеи', price: 9500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80' }
     ];
 
     window.addEventListener('DOMContentLoaded', () => {
-        botReplyWithCatalog("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nНажмите на любой букет, чтобы посмотреть подробную карточку товара:", products.slice(0, 4));
+        botReplyWithCatalog("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nНажмите на любую карточку букета, чтобы открыть подробное фото и описание:", products.slice(0, 4));
     });
 
     function botReply(text) {
@@ -317,7 +317,6 @@
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
-    // Открытие подробной карточки товара по клику на букет
     function openProductCard(id) {
         const item = products.find(p => p.id === id);
         if (!item) return;
@@ -331,7 +330,7 @@
             <div class="p-tag">${item.tag}</div>
             <div class="product-modal-title">${item.title}</div>
             <div class="product-modal-price">${item.price.toLocaleString()} ₽</div>
-            <div class="product-modal-desc">${item.desc}<br><br>✨ Свежие цветы с аквабоксом в подарок. Доставка за 60 минут!</div>
+            <div class="product-modal-desc">${item.desc}<br><br>✨ Свежие цветы в аквабоксе с подкормкой Chrysal в подарок. Бесплатная открытка и доставка за 60 минут!</div>
             <button class="widget-btn" style="background:var(--primary); padding:12px; font-size:0.95rem;" onclick="addItemToCart(${item.id}); closeProductModal();">Добавить в корзину</button>
         `;
         productModal.classList.add('active');
