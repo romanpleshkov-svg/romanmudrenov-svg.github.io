@@ -51,7 +51,7 @@
             width: 100%;
             max-width: 480px;
             height: 100%;
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             display: flex;
@@ -83,12 +83,9 @@
         .brand { display: flex; align-items: center; gap: 12px; }
 
         .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
+            width: 44px; height: 44px; border-radius: 14px;
             background: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=200&q=80') center/cover;
-            position: relative;
-            box-shadow: var(--btn-shadow);
+            position: relative; box-shadow: var(--btn-shadow);
         }
 
         .online-dot {
@@ -99,50 +96,29 @@
 
         .brand-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            line-height: 1.1;
+            font-size: 1.1rem; color: var(--text-main); line-height: 1.1;
         }
-
         .brand-text span { font-size: 0.72rem; color: var(--primary); font-weight: 600; }
 
         .cart-trigger {
-            background: var(--surface);
-            border: 1px solid #e9ecef;
-            padding: 8px 13px;
-            border-radius: 12px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: var(--btn-shadow);
-            cursor: pointer;
+            background: var(--surface); border: 1px solid #e9ecef;
+            padding: 8px 13px; border-radius: 12px; font-size: 0.82rem; font-weight: 700;
+            color: var(--text-main); display: flex; align-items: center; gap: 6px;
+            box-shadow: var(--btn-shadow); cursor: pointer;
         }
-
         .badge { background: var(--gradient); color: #fff; padding: 2px 7px; border-radius: 8px; font-size: 0.72rem; }
 
         .chat-area {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            scroll-behavior: smooth;
+            flex: 1; padding: 16px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 14px; scroll-behavior: smooth;
         }
         .chat-area::-webkit-scrollbar { width: 4px; }
         .chat-area::-webkit-scrollbar-thumb { background: rgba(136, 152, 170, 0.25); border-radius: 4px; }
 
         .msg {
-            max-width: 88%;
-            padding: 12px 15px;
-            border-radius: 18px;
-            font-size: 0.9rem;
-            line-height: 1.45;
-            animation: popUp 0.25s ease forwards;
-            word-wrap: break-word;
+            max-width: 92%; padding: 12px 14px; border-radius: 18px;
+            font-size: 0.88rem; line-height: 1.45; animation: popUp 0.25s ease forwards;
+            word-wrap: break-word; display: flex; flex-direction: column; gap: 10px;
         }
         @keyframes popUp {
             from { opacity: 0; transform: translateY(8px); }
@@ -150,109 +126,57 @@
         }
 
         .msg.bot {
-            background: var(--surface);
-            color: var(--text-main);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-            box-shadow: 0 4px 14px rgba(50, 50, 93, 0.05);
-            border: 1px solid #f1f3f5;
+            background: var(--surface); color: var(--text-main); align-self: flex-start;
+            border-bottom-left-radius: 4px; box-shadow: 0 4px 14px rgba(50, 50, 93, 0.05);
+            border: 1px solid #f1f3f5; width: 100%;
         }
-
         .msg.user {
-            background: var(--gradient);
-            color: #fff;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 6px 15px rgba(245, 54, 92, 0.25);
+            background: var(--gradient); color: #fff; align-self: flex-end;
+            border-bottom-right-radius: 4px; box-shadow: 0 6px 15px rgba(245, 54, 92, 0.25);
+            max-width: 82%;
         }
 
+        /* Встроенная карусель внутри сообщения */
         .carousel {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 8px 4px;
-            width: 100%;
-            scroll-snap-type: x mandatory;
-            align-self: flex-start;
+            display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 8px 2px;
+            width: 100%; scroll-snap-type: x mandatory;
         }
-        .carousel::-webkit-scrollbar { height: 6px; }
+        .carousel::-webkit-scrollbar { height: 5px; }
         .carousel::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
         .product-card {
-            min-width: 195px;
-            max-width: 195px;
-            background: var(--surface);
-            border-radius: 18px;
-            padding: 10px;
-            scroll-snap-align: start;
-            box-shadow: var(--shadow);
-            border: 1px solid #e9ecef;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
+            min-width: 175px; max-width: 175px; background: #fff; border-radius: 14px;
+            padding: 8px; scroll-snap-align: start; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e9ecef; display: flex; flex-direction: column; flex-shrink: 0;
         }
-
-        .product-card img {
-            width: 100%;
-            height: 125px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .p-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 6px; }
-        .p-title { font-weight: 700; font-size: 0.9rem; margin: 2px 0; color: var(--text-main); }
-        .p-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.25; }
-
+        .product-card img { width: 100%; height: 115px; object-fit: cover; border-radius: 10px; }
+        .p-tag { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 5px; }
+        .p-title { font-weight: 700; font-size: 0.85rem; margin: 2px 0; color: var(--text-main); }
+        .p-desc { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 6px; line-height: 1.2; }
         .p-footer {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 6px;
-            border-top: 1px solid #f6f9fc;
+            margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+            padding-top: 5px; border-top: 1px solid #f6f9fc;
         }
-        .p-price { font-weight: 700; font-size: 0.88rem; color: var(--text-main); }
-
+        .p-price { font-weight: 700; font-size: 0.82rem; color: var(--text-main); }
         .btn-buy {
-            background: var(--gradient);
-            color: #fff;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 10px;
-            font-size: 0.74rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: var(--btn-shadow);
+            background: var(--gradient); color: #fff; border: none; padding: 5px 8px;
+            border-radius: 8px; font-size: 0.7rem; font-weight: 600; cursor: pointer;
         }
 
-        .widget-card {
-            background: var(--surface);
-            border-radius: 18px;
-            padding: 12px;
-            box-shadow: var(--shadow);
-            border: 1px solid #e9ecef;
-            width: 94%;
-        }
-        .map-frame { width: 100%; height: 135px; border-radius: 12px; overflow: hidden; margin-bottom: 8px; background: #e9ecef; }
-        .widget-input { width: 100%; padding: 9px 12px; border: 1px solid #dee2e6; border-radius: 10px; font-size: 0.8rem; margin-bottom: 6px; outline: none; }
-        .widget-btn { width: 100%; background: var(--success); color: #fff; border: none; padding: 9px; border-radius: 10px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+        .widget-card { background: var(--surface); border-radius: 16px; padding: 10px; border: 1px solid #e9ecef; width: 100%; }
+        .map-frame { width: 100%; height: 130px; border-radius: 10px; overflow: hidden; margin-bottom: 6px; background: #e9ecef; }
+        .widget-input { width: 100%; padding: 8px 10px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.8rem; margin-bottom: 6px; outline: none; }
+        .widget-btn { width: 100%; background: var(--success); color: #fff; border: none; padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
 
         .quick-bar {
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.95);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            white-space: nowrap;
+            padding: 8px 12px; background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(0, 0, 0, 0.05); display: flex; gap: 8px; overflow-x: auto; white-space: nowrap;
         }
         .quick-bar::-webkit-scrollbar { display: none; }
-
         .chip {
-            background: #fff; border: 1px solid #e9ecef;
-            padding: 7px 12px; border-radius: 20px;
-            font-size: 0.76rem; font-weight: 600; color: var(--text-main);
-            cursor: pointer; box-shadow: 0 1px 3px rgba(50, 50, 93, 0.06); flex-shrink: 0;
+            background: #fff; border: 1px solid #e9ecef; padding: 7px 12px; border-radius: 20px;
+            font-size: 0.76rem; font-weight: 600; color: var(--text-main); cursor: pointer;
+            box-shadow: 0 1px 3px rgba(50, 50, 93, 0.06); flex-shrink: 0;
         }
         .chip:active { background: var(--gradient); color: #fff; border-color: transparent; }
 
@@ -266,8 +190,8 @@
         }
         .send-btn {
             width: 42px; height: 42px; border-radius: 50%; border: none;
-            background: var(--gradient); color: #fff; font-size: 1rem;
-            cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(245, 54, 92, 0.35); flex-shrink: 0;
+            background: var(--gradient); color: #fff; font-size: 1rem; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(245, 54, 92, 0.35); flex-shrink: 0;
         }
 
         .modal-overlay {
@@ -304,9 +228,10 @@
 
     <div class="quick-bar">
         <div class="chip" onclick="quickSend('💐 Все букеты')">💐 Все букеты</div>
+        <div class="chip" onclick="quickSend('📸 Портфолио')">📸 Портфолио (12)</div>
         <div class="chip" onclick="quickSend('💕 На свидание')">💕 На свидание</div>
         <div class="chip" onclick="quickSend('🎂 День рождения')">🎂 День рождения</div>
-        <div class="chip" onclick="quickSend('🗺️ Карта доставки')">🗺️ Карта доставки</div>
+        <div class="chip" onclick="quickSend('🗺️ Карта доставки')">🗺️ Доставка</div>
         <div class="chip" onclick="quickSend('🎁 Промокод')">🎁 Промокод</div>
         <div class="chip" onclick="quickSend('👩‍🌾 Живой флорист')">👩‍🌾 Флорист</div>
     </div>
@@ -351,22 +276,58 @@
 
     let cart = [];
 
+    // Большое портфолио из 12 букетов
     const products = [
         { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы, эвкалипт', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=400&q=80' },
         { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Пионы Сара Бернар, гортензия', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80' },
         { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Тюльпаны, гипсофила', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=400&q=80' },
-        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Бархатные розы в шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80' }
+        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Бархатные розы в шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80' },
+        { id: 5, category: 'portfolio', tag: 'Эксклюзив', title: 'Прованский сад', desc: 'Лаванда, кустовые розы и маттиола', price: 5100, img: 'https://images.unsplash.com/photo-1508766917636-f65f717c1293?auto=format&fit=crop&w=400&q=80' },
+        { id: 6, category: 'portfolio', tag: 'Яркий микс', title: 'Солнечный день', desc: 'Желтые тюльпаны и солнечные мимозы', price: 4200, img: 'https://images.unsplash.com/photo-1533855049397-9419d12f3e8f?auto=format&fit=crop&w=400&q=80' },
+        { id: 7, category: 'portfolio', tag: 'Роскошь', title: 'Красный бархат', desc: '101 премиальная красная роза', price: 12500, img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=400&q=80' },
+        { id: 8, category: 'portfolio', tag: 'Свежесть', title: 'Морской бриз', desc: 'Синие дельфиниумы и белые эустомы', price: 4800, img: 'https://images.unsplash.com/photo-1562690868-60bbe7293e94?auto=format&fit=crop&w=400&q=80' },
+        { id: 9, category: 'portfolio', tag: 'Стиль', title: 'Зимняя вишня', desc: 'Темные каллы, бордовые пионы и зелень', price: 6200, img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=400&q=80' },
+        { id: 10, category: 'portfolio', tag: 'Нежность', title: 'Ангельское дыхание', desc: 'Белые кустовые розы и хризантемы', price: 3600, img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=400&q=80' },
+        { id: 11, category: 'portfolio', tag: 'Арт-дизайн', title: 'Акварель', desc: 'Разноцветные ранункулюсы и анемоны', price: 5900, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80' },
+        { id: 12, category: 'portfolio', tag: 'Премиум', title: 'Королевский шарм', desc: 'Огромный букет из гортензий и орхидей', price: 9500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=400&q=80' }
     ];
 
     window.addEventListener('DOMContentLoaded', () => {
-        botReply("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nВыберите букет из витрины ниже или воспользуйтесь кнопками меню:");
-        showCatalog(products);
+        botReplyWithCatalog("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nВыберите букет из нашей витрины ниже:", products.slice(0, 4));
     });
 
     function botReply(text) {
         const div = document.createElement('div');
         div.className = 'msg bot';
         div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+        chatArea.appendChild(div);
+        scrollBottom();
+    }
+
+    function botReplyWithCatalog(text, list) {
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        
+        let htmlText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+        
+        let railHtml = '<div class="carousel">';
+        list.forEach(item => {
+            railHtml += `
+                <div class="product-card">
+                    <img src="${item.img}" alt="${item.title}">
+                    <div class="p-tag">${item.tag}</div>
+                    <div class="p-title">${item.title}</div>
+                    <div class="p-desc">${item.desc}</div>
+                    <div class="p-footer">
+                        <span class="p-price">${item.price.toLocaleString()} ₽</span>
+                        <button class="btn-buy" onclick="addItemToCart(${item.id})">+ В корзину</button>
+                    </div>
+                </div>
+            `;
+        });
+        railHtml += '</div>';
+
+        div.innerHTML = `<div>${htmlText}</div>${railHtml}`;
         chatArea.appendChild(div);
         scrollBottom();
     }
@@ -381,28 +342,6 @@
 
     function scrollBottom() {
         chatArea.scrollTop = chatArea.scrollHeight;
-    }
-
-    function showCatalog(list) {
-        const rail = document.createElement('div');
-        rail.className = 'carousel';
-        list.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                <img src="${item.img}" alt="${item.title}">
-                <div class="p-tag">${item.tag}</div>
-                <div class="p-title">${item.title}</div>
-                <div class="p-desc">${item.desc}</div>
-                <div class="p-footer">
-                    <span class="p-price">${item.price.toLocaleString()} ₽</span>
-                    <button class="btn-buy" onclick="addItemToCart(${item.id})">+ В корзину</button>
-                </div>
-            `;
-            rail.appendChild(card);
-        });
-        chatArea.appendChild(rail);
-        scrollBottom();
     }
 
     function addItemToCart(id) {
@@ -422,7 +361,6 @@
         if (open) {
             if (cart.length === 0) {
                 botReply("🛒 Ваша корзина пуста. Выберите букет из каталога ниже:");
-                showCatalog(products);
                 return;
             }
             const sum = cart.reduce((acc, el) => acc + el.price, 0);
@@ -461,16 +399,19 @@
     }
 
     function showDeliveryMap() {
-        const w = document.createElement('div');
-        w.className = 'widget-card';
-        w.innerHTML = `
-            <div class="map-frame">
-                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=37.58,55.73,37.65,55.77&layer=mapnik" width="100%" height="100%" frameborder="0" style="border:0;"></iframe>
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        div.innerHTML = `
+            <div>🗺️ Укажите ваш адрес на карте для точного расчета курьера:</div>
+            <div class="widget-card">
+                <div class="map-frame">
+                    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=37.58,55.73,37.65,55.77&layer=mapnik" width="100%" height="100%" frameborder="0" style="border:0;"></iframe>
+                </div>
+                <input type="text" class="widget-input" id="inlineAddr" placeholder="Введите адрес доставки...">
+                <button class="widget-btn" onclick="calcDeliveryInline()">Рассчитать доставку</button>
             </div>
-            <input type="text" class="widget-input" id="inlineAddr" placeholder="Введите ваш адрес для расчета...">
-            <button class="widget-btn" onclick="calcDeliveryInline()">Рассчитать доставку</button>
         `;
-        chatArea.appendChild(w);
+        chatArea.appendChild(div);
         scrollBottom();
     }
 
@@ -495,25 +436,22 @@
         userReply(text);
         setTimeout(() => {
             const q = text.toLowerCase();
-            if (q.includes('все букет') || q.includes('каталог')) {
-                botReply("💐 Актуальная витрина букетов:");
-                showCatalog(products);
+            if (q.includes('портфолио')) {
+                botReplyWithCatalog("📸 Наше полное портфолио (12 авторских работ в наличии):", products);
+            } else if (q.includes('все букет') || q.includes('каталог')) {
+                botReplyWithCatalog("💐 Актуальная витрина букетов:", products.slice(0, 4));
             } else if (q.includes('свидан') || q.includes('романт')) {
-                botReply("💕 Романтические композиции для свидания:");
-                showCatalog(products.filter(p => p.category === 'romance'));
+                botReplyWithCatalog("💕 Романтические композиции для свидания:", products.filter(p => p.category === 'romance'));
             } else if (q.includes('рожд') || q.includes('юбил') || q.includes('мам')) {
-                botReply("🎂 Подарочные букеты и композиции в коробках:");
-                showCatalog(products.filter(p => p.category === 'birthday'));
+                botReplyWithCatalog("🎂 Подарочные букеты и композиции в коробках:", products.filter(p => p.category === 'birthday'));
             } else if (q.includes('карт') || q.includes('достав') || q.includes('адрес')) {
-                botReply("🗺️ Укажите ваш адрес на карте для точного расчета курьера:");
                 showDeliveryMap();
             } else if (q.includes('промокод') || q.includes('скид')) {
                 botReply("🎁 Ваш промокод **FLORA15** дает скидку 15% на первый заказ!");
             } else if (q.includes('флорист') || q.includes('оператор')) {
                 botReply("👩‍🌾 Старший флорист на связи! Телефон для связи: **+7 (999) 123-45-67**.");
             } else {
-                botReply(`🌸 Я понял ваше пожелание. Выберите один из вариантов в каталоге ниже:`);
-                showCatalog(products);
+                botReplyWithCatalog(`🌸 Я понял ваше пожелание. Вот лучшие варианты из нашего каталога:`, products.slice(0, 4));
             }
         }, 400);
     }
