@@ -2,411 +2,708 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FloraAI — Цветочный Консьерж</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Atelier Fleurs — Argon v3.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #d48c96;
-            --primary-dark: #b86b77;
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #f7e6e9 50%, #e8f0ed 100%);
-            --glass: rgba(255, 255, 255, 0.75);
-            --text: #2c2526;
+            --argon-primary: #f5365c;
+            --argon-gradient: linear-gradient(87deg, #f5365c 0, #f56036 100%);
+            --argon-bg: linear-gradient(135deg, #fdfbfb 0%, #fff0f3 50%, #f4f5f7 100%);
+            --argon-shadow: 0 15px 35px rgba(50, 50, 93, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+            --argon-btn-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --text-main: #32325d;
+            --text-muted: #8898aa;
+            --success: #2dce89;
+            --surface: #ffffff;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg-gradient);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--argon-bg);
             height: 100vh;
+            height: 100dvh;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            position: relative;
+            color: var(--text-main);
         }
 
-        /* Падающие лепестки на фоне */
         .petal {
-            position: absolute;
-            background: rgba(212, 140, 150, 0.25);
+            position: fixed;
+            background: linear-gradient(135deg, rgba(245, 54, 92, 0.22), rgba(245, 96, 54, 0.12));
             border-radius: 150% 0 150% 0;
-            animation: float 12s infinite linear;
+            animation: fall linear infinite;
             z-index: 0;
             pointer-events: none;
         }
-        @keyframes float {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+            15% { opacity: 0.85; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(30px); opacity: 0; }
         }
 
-        /* Контейнер чата */
-        .chat-wrapper {
-            width: 400px;
-            max-width: 95vw;
-            height: 680px;
-            max-height: 92vh;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: 1px solid rgba(255,255,255,0.8);
-            box-shadow: 0 25px 50px -12px rgba(184, 107, 119, 0.2);
+        .app-shell {
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             display: flex;
             flex-direction: column;
-            z-index: 1;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--argon-shadow);
             overflow: hidden;
         }
 
-        /* Шапка */
-        .chat-header {
-            padding: 20px 24px;
-            background: rgba(255,255,255,0.6);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        @media (min-width: 520px) {
+            .app-shell {
+                height: 92dvh;
+                border-radius: 30px;
+                border: 1px solid rgba(255, 255, 255, 0.95);
+            }
+        }
+
+        .header {
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
-            gap: 14px;
+            justify-content: space-between;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(50, 50, 93, 0.03);
         }
+
+        .brand { display: flex; align-items: center; gap: 12px; }
+
         .avatar {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=150&q=80') center/cover;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=200&q=80') center/cover;
             position: relative;
-            box-shadow: 0 4px 10px rgba(212, 140, 150, 0.4);
+            box-shadow: var(--argon-btn-shadow);
         }
-        .avatar::after {
-            content: '';
+
+        .online-dot {
             position: absolute;
-            bottom: 2px; right: 2px;
-            width: 10px; height: 10px;
-            background: #4caf50;
+            bottom: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: var(--success);
             border: 2px solid #fff;
             border-radius: 50%;
         }
-        .header-info h1 {
+
+        .brand-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--text);
-        }
-        .header-info p {
-            font-size: 0.75rem;
-            color: #7a6e70;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 1.1;
         }
 
-        /* Область сообщений */
-        .chat-body {
+        .brand-text span {
+            font-size: 0.72rem;
+            color: var(--argon-primary);
+            font-weight: 600;
+        }
+
+        .cart-trigger {
+            background: var(--surface);
+            border: 1px solid #e9ecef;
+            padding: 8px 13px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--argon-btn-shadow);
+            cursor: pointer;
+        }
+
+        .badge {
+            background: var(--argon-gradient);
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+        }
+
+        .chat-area {
             flex: 1;
-            padding: 20px;
+            padding: 16px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             scroll-behavior: smooth;
         }
-        .chat-body::-webkit-scrollbar { width: 4px; }
-        .chat-body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 4px; }
+        .chat-area::-webkit-scrollbar { width: 4px; }
+        .chat-area::-webkit-scrollbar-thumb { background: rgba(136, 152, 170, 0.25); border-radius: 4px; }
 
         .msg {
-            max-width: 82%;
-            padding: 12px 16px;
-            border-radius: 20px;
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 18px;
             font-size: 0.9rem;
-            line-height: 1.4;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            opacity: 0;
-            transform: translateY(15px) scale(0.95);
+            line-height: 1.45;
+            animation: popUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            word-wrap: break-word;
         }
-        @keyframes popIn {
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
+
         .msg.bot {
-            background: #fff;
-            color: var(--text);
+            background: var(--surface);
+            color: var(--text-main);
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 14px rgba(50, 50, 93, 0.05);
+            border: 1px solid #f1f3f5;
         }
+
         .msg.user {
-            background: var(--primary);
+            background: var(--argon-gradient);
             color: #fff;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
-            box-shadow: 0 4px 15px rgba(212, 140, 150, 0.3);
+            box-shadow: 0 6px 15px rgba(245, 54, 92, 0.25);
         }
 
-        /* Карусель букетов */
         .carousel {
             display: flex;
-            gap: 14px;
+            gap: 12px;
             overflow-x: auto;
-            padding: 8px 4px 16px 4px;
+            padding: 4px 2px 12px 2px;
             scroll-snap-type: x mandatory;
-            animation: popIn 0.5s ease forwards;
+            width: 100%;
+            animation: popUp 0.35s ease forwards;
         }
         .carousel::-webkit-scrollbar { height: 4px; }
-        .carousel::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        .carousel::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 4px; }
 
-        .card {
-            min-width: 210px;
-            background: #fff;
-            border-radius: 20px;
+        .product-card {
+            min-width: 205px;
+            max-width: 205px;
+            background: var(--surface);
+            border-radius: 18px;
             padding: 10px;
-            scroll-snap-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-snap-align: start;
+            box-shadow: var(--argon-shadow);
+            border: 1px solid #f1f3f5;
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(212, 140, 150, 0.25);
-        }
-        .card img {
+
+        .product-card img {
             width: 100%;
-            height: 150px;
+            height: 135px;
             object-fit: cover;
-            border-radius: 14px;
-        }
-        .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            margin: 10px 4px 4px;
-            color: var(--text);
-        }
-        .card-price {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin: 0 4px 10px;
-        }
-        .card-btn {
-            margin-top: auto;
-            background: #fdf6f7;
-            color: var(--primary-dark);
-            border: 1px solid var(--primary);
-            padding: 8px;
             border-radius: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .card-btn:hover {
-            background: var(--primary);
-            color: #fff;
         }
 
-        /* Быстрые ответы (Чипсы) */
-        .chips {
+        .p-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--argon-primary);
+            margin-top: 8px;
+        }
+
+        .p-title {
+            font-weight: 700;
+            font-size: 0.94rem;
+            margin: 2px 0 4px;
+            color: var(--text-main);
+        }
+
+        .p-desc {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .p-footer {
+            margin-top: auto;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 4px;
-        }
-        .chip {
-            background: rgba(255,255,255,0.8);
-            border: 1px solid rgba(212, 140, 150, 0.4);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .chip:hover {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            transform: scale(1.03);
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid #f6f9fc;
         }
 
-        /* Индикатор набора текста */
+        .p-price { font-weight: 700; font-size: 0.92rem; color: var(--text-main); }
+
+        .btn-buy {
+            background: var(--argon-gradient);
+            color: #fff;
+            border: none;
+            padding: 7px 11px;
+            border-radius: 10px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--argon-btn-shadow);
+        }
+
+        .widget-card {
+            background: var(--surface);
+            border-radius: 18px;
+            padding: 12px;
+            box-shadow: var(--argon-shadow);
+            border: 1px solid #e9ecef;
+            width: 94%;
+            animation: popUp 0.35s ease forwards;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 145px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #e9ecef;
+        }
+
+        .widget-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            margin-bottom: 8px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .widget-btn {
+            width: 100%;
+            background: var(--success);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            box-shadow: var(--argon-btn-shadow);
+        }
+
+        .quick-bar {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .quick-bar::-webkit-scrollbar { display: none; }
+
+        .chip {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(50, 50, 93, 0.06);
+            flex-shrink: 0;
+        }
+        .chip:active {
+            background: var(--argon-gradient);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .footer-input {
+            padding: 10px 14px calc(12px + env(safe-area-inset-bottom));
+            background: #fff;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .footer-input input {
+            flex: 1;
+            border: 1px solid #e9ecef;
+            background: #f6f9fc;
+            padding: 12px 16px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--argon-gradient);
+            color: #fff;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(245, 54, 92, 0.35);
+            flex-shrink: 0;
+        }
+
         .typing {
             display: flex;
-            gap: 4px;
+            gap: 5px;
             padding: 12px 16px;
             background: #fff;
-            border-radius: 20px;
+            border-radius: 18px;
             align-self: flex-start;
+            box-shadow: var(--argon-btn-shadow);
             width: fit-content;
         }
         .dot {
             width: 6px; height: 6px;
-            background: var(--primary);
+            background: var(--argon-primary);
             border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
+            animation: bounce 1.2s infinite ease-in-out;
         }
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
         @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-4px); opacity: 1; }
         }
 
-        /* Подвал ввода */
-        .chat-footer {
-            padding: 14px 20px;
-            background: rgba(255,255,255,0.6);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .chat-footer input {
-            flex: 1;
-            border: none;
-            background: #fff;
-            padding: 12px 18px;
-            border-radius: 24px;
-            font-size: 0.9rem;
-            color: var(--text);
-            outline: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-        .chat-footer button {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
+        .modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(50, 50, 93, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: none;
+            align-items: flex-end;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(212, 140, 150, 0.3);
-            transition: all 0.2s;
         }
-        .chat-footer button:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
+        .modal-overlay.active { display: flex; }
+
+        .bottom-sheet {
+            width: 100%;
+            max-height: 82%;
+            background: #fff;
+            border-radius: 24px 24px 0 0;
+            padding: 20px 18px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+        }
+
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f1f3f5;
+            padding-bottom: 10px;
+        }
+        .close-sheet {
+            background: #f6f9fc;
+            border: none;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f6f9fc;
+            font-size: 0.88rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="chat-wrapper">
-        <div class="chat-header">
-            <div class="avatar"></div>
-            <div class="header-info">
-                <h1>FloraAI</h1>
-                <p>Ваш личный цветочный консьерж</p>
+<div class="app-shell">
+    <div class="header">
+        <div class="brand">
+            <div class="avatar"><div class="online-dot"></div></div>
+            <div class="brand-text">
+                <h1>Atelier Fleurs</h1>
+                <span>Argon 3.0 • Онлайн</span>
             </div>
         </div>
-        
-        <div class="chat-body" id="chatBody">
-            <div class="msg bot">Приветствую! Я FloraAI. Помогу выбрать идеальный букет, составить поздравление или оформить доставку цветов. Что вас интересует?</div>
-            
-            <div class="chips">
-                <div class="chip" onclick="selectOption('Выбрать букет')">💐 Выбрать букет</div>
-                <div class="chip" onclick="selectOption('Повод для подарка')">🎉 Повод для подарка</div>
-                <div class="chip" onclick="selectOption('Статус заказа')">📦 Статус заказа</div>
-            </div>
-        </div>
-
-        <div class="chat-footer">
-            <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-        </div>
+        <button class="cart-trigger" onclick="toggleCartModal(true)">
+            🛒 Корзина <span class="badge" id="cartCount">0</span>
+        </button>
     </div>
 
-    <!-- Элементы лепестков для анимации -->
-    <script>
-        function createPetals() {
-            const count = 15;
-            for (let i = 0; i < count; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.width = Math.random() * 15 + 10 + 'px';
-                petal.style.height = petal.style.width;
-                petal.style.animationDelay = Math.random() * 10 + 's';
-                petal.style.animationDuration = Math.random() * 8 + 8 + 's';
-                document.body.appendChild(petal);
-            }
-        }
-        createPetals();
+    <div class="chat-area" id="chatArea"></div>
 
-        const chatBody = document.getElementById('chatBody');
-        const userInput = document.getElementById('userInput');
+    <div class="quick-bar">
+        <div class="chip" onclick="quickSend('💐 Все букеты')">💐 Все букеты</div>
+        <div class="chip" onclick="quickSend('💕 На свидание')">💕 На свидание</div>
+        <div class="chip" onclick="quickSend('🎂 День рождения')">🎂 День рождения</div>
+        <div class="chip" onclick="quickSend('🗺️ Карта доставки')">🗺️ Карта доставки</div>
+        <div class="chip" onclick="quickSend('🎁 Промокод')">🎁 Промокод</div>
+        <div class="chip" onclick="quickSend('👩‍🌾 Живой флорист')">👩‍🌾 Флорист</div>
+    </div>
 
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') sendMessage();
-        }
+    <div class="footer-input">
+        <input type="text" id="userInput" placeholder="Напишите ваш вопрос или бюджет..." onkeypress="if(event.key==='Enter') sendUserInput()">
+        <button class="send-btn" onclick="sendUserInput()">➤</button>
+    </div>
 
-        function selectOption(text) {
-            userInput.value = text;
-            sendMessage();
-        }
+    <div class="modal-overlay" id="cartModal">
+        <div class="bottom-sheet">
+            <div class="sheet-header">
+                <h3>🛍️ Оформление заказа</h3>
+                <button class="close-sheet" onclick="toggleCartModal(false)">✕</button>
+            </div>
+            <div id="cartItemsList"></div>
+            <input type="text" class="widget-input" id="orderAddress" placeholder="📍 Улица, дом, квартира и время доставки">
+            <input type="text" class="widget-input" id="orderCardText" placeholder="💌 Текст для бесплатной открытки">
+            <input type="tel" class="widget-input" id="orderPhone" placeholder="📞 Ваш телефон для связи">
+            <button class="widget-btn" onclick="submitFinalOrder()">Подтвердить и перейти к оплате</button>
+        </div>
+    </div>
+</div>
 
-        function sendMessage() {
-            const text = userInput.value.trim();
-            if (!text) return;
+<script>
+    for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = Math.random() * 12 + 8;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (Math.random() * 6 + 8) + 's';
+        p.style.animationDelay = (Math.random() * 5) + 's';
+        document.body.appendChild(p);
+    }
 
-            // Сообщение пользователя
-            appendMessage(text, 'user');
-            userInput.value = '';
+    const chatArea = document.getElementById('chatArea');
+    const userInput = document.getElementById('userInput');
+    const cartCount = document.getElementById('cartCount');
+    const cartModal = document.getElementById('cartModal');
+    const cartItemsList = document.getElementById('cartItemsList');
 
-            // Показываем индикатор набора
-            const typingIndicator = showTyping();
-            
-            setTimeout(() => {
-                typingIndicator.remove();
-                
-                if (text.toLowerCase().includes('букет')) {
-                    appendMessage('Конечно! Вот наши самые популярные весенние композиции:', 'bot');
-                    appendCarousel();
-                } else {
-                    appendMessage('Прекрасный выбор. Сейчас я подберу лучшие варианты под ваш запрос. Пожалуйста, подождите секунду.', 'bot');
-                }
-            }, 1200);
-        }
+    let cart = [];
 
-        function appendMessage(text, sender) {
-            const msg = document.createElement('div');
-            msg.classList.add('msg', sender);
-            msg.innerText = text;
-            chatBody.appendChild(msg);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
+    const products = [
+        { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы Остина, эвкалипт, матовый шелк', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=400&q=80' },
+        { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Французские пионы Сара Бернар и гортензия', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80' },
+        { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Белые тюльпаны, ранункулюсы и гипсофила', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=400&q=80' },
+        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Бархатные розы Гран При в шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80' }
+    ];
 
-        function showTyping() {
-            const typing = document.createElement('div');
-            typing.classList.add('typing');
-            typing.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-            chatBody.appendChild(typing);
-            chatBody.scrollTop = chatBody.scrollHeight;
-            return typing;
-        }
+    window.addEventListener('DOMContentLoaded', () => {
+        botReply("Здравствуйте! 🌸 Добро пожаловать в **Atelier Fleurs (Argon 3.0)**.\n\nВыберите букет в витрине ниже, рассчитайте доставку по карте или воспользуйтесь быстрыми кнопками меню:");
+        setTimeout(() => showCatalog(products), 350);
+    });
 
-        function appendCarousel() {
-            const carousel = document.createElement('div');
-            carousel.classList.add('carousel');
-            carousel.innerHTML = `
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=300&q=80" alt="Нежность">
-                    <div class="card-title">Нежность Пионов</div>
-                    <div class="card-price">4 500 ₽</div>
-                    <button class="card-btn" onclick="appendMessage('Вы выбрали букет \'Нежность Пионов\'. Оформляю заказ...', 'bot')">Заказать</button>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=300&q=80" alt="Солнце">
-                    <div class="card-title">Лучи Солнца</div>
-                    <div class="card-price">3 200 ₽</div>
-                    <button class="card-btn" onclick="appendMessage('Вы выбрали букет \'Лучи Солнца\'. Оформляю заказ...', 'bot')">Заказать</button>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=300&q=80" alt="Классика">
-                    <div class="card-title">Алая Классика</div>
-                    <div class="card-price">5 100 ₽</div>
-                    <button class="card-btn" onclick="appendMessage('Вы выбрали букет \'Алая Классика\'. Оформляю заказ...', 'bot')">Заказать</button>
+    function botReply(text) {
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+        chatArea.appendChild(div);
+        scrollBottom();
+    }
+
+    function userReply(text) {
+        const div = document.createElement('div');
+        div.className = 'msg user';
+        div.innerText = text;
+        chatArea.appendChild(div);
+        scrollBottom();
+    }
+
+    function showTyping() {
+        const t = document.createElement('div');
+        t.className = 'typing';
+        t.id = 'typingIndicator';
+        t.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+        chatArea.appendChild(t);
+        scrollBottom();
+    }
+
+    function hideTyping() {
+        const el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+    }
+
+    function scrollBottom() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    function showCatalog(list) {
+        const rail = document.createElement('div');
+        rail.className = 'carousel';
+        list.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${item.img}" alt="${item.title}">
+                <div class="p-tag">${item.tag}</div>
+                <div class="p-title">${item.title}</div>
+                <div class="p-desc">${item.desc}</div>
+                <div class="p-footer">
+                    <span class="p-price">${item.price.toLocaleString()} ₽</span>
+                    <button class="btn-buy" onclick="addItemToCart(${item.id})">+ В корзину</button>
                 </div>
             `;
-            chatBody.appendChild(carousel);
-            chatBody.scrollTop = chatBody.scrollHeight;
+            rail.appendChild(card);
+        });
+        chatArea.appendChild(rail);
+        scrollBottom();
+    }
+
+    function addItemToCart(id) {
+        const item = products.find(p => p.id === id);
+        if (!item) return;
+        cart.push(item);
+        cartCount.innerText = cart.length;
+
+        userReply(`Добавить «${item.title}»`);
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            const sum = cart.reduce((acc, el) => acc + el.price, 0);
+            botReply(`✅ Букет **«${item.title}»** в корзине!\nСумма: **${sum.toLocaleString()} ₽**.\n\nНажмите кнопку **«🛒 Корзина»** вверху справа для оформления заказа!`);
+        }, 500);
+    }
+
+    function toggleCartModal(open) {
+        if (open) {
+            if (cart.length === 0) {
+                botReply("🛒 Ваша корзина пока пуста. Нажмите **«+ В корзину»** под любым букетом:");
+                showCatalog(products);
+                return;
+            }
+            const sum = cart.reduce((acc, el) => acc + el.price, 0);
+            cartItemsList.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item-row">
+                    <span><b>${item.title}</b></span>
+                    <span>${item.price.toLocaleString()} ₽ <button onclick="removeFromCart(${idx})" style="border:none;background:none;color:#f5365c;cursor:pointer;margin-left:6px;">✕</button></span>
+                </div>
+            `).join('') + `<div style="text-align:right;font-weight:700;margin-top:8px;">Итого: ${sum.toLocaleString()} ₽</div>`;
+            cartModal.classList.add('active');
+        } else {
+            cartModal.classList.remove('active');
         }
-    </script>
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        cartCount.innerText = cart.length;
+        if (cart.length === 0) toggleCartModal(false);
+        else toggleCartModal(true);
+    }
+
+    function submitFinalOrder() {
+        const addr = document.getElementById('orderAddress').value.trim() || 'Уточнить у получателя';
+        const cardText = document.getElementById('orderCardText').value.trim() || 'Без открытки';
+        const phone = document.getElementById('orderPhone').value.trim() || 'Не указан';
+        const sum = cart.reduce((acc, el) => acc + el.price, 0);
+
+        toggleCartModal(false);
+        userReply(`Заказ на адрес: ${addr}`);
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            botReply(`🎉 **Заказ #${Math.floor(1000 + Math.random() * 9000)} оформлен!**\n\n💰 К оплате: **${sum.toLocaleString()} ₽**\n📍 Адрес: ${addr}\n💌 Открытка: «${cardText}»\n📞 Телефон: ${phone}\n\nСсылка на оплату по СБП отправлена!`);
+            cart = [];
+            cartCount.innerText = '0';
+        }, 700);
+    }
+
+    function showDeliveryMap() {
+        const w = document.createElement('div');
+        w.className = 'widget-card';
+        w.innerHTML = `
+            <div class="map-frame">
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=37.58,55.73,37.65,55.77&layer=mapnik" width="100%" height="100%" frameborder="0" style="border:0;"></iframe>
+            </div>
+            <input type="text" class="widget-input" id="inlineAddr" placeholder="Введите улицу и дом для расчета доставки...">
+            <button class="widget-btn" onclick="calcDeliveryInline()">Рассчитать стоимость и время</button>
+        `;
+        chatArea.appendChild(w);
+        scrollBottom();
+    }
+
+    function calcDeliveryInline() {
+        const val = document.getElementById('inlineAddr').value.trim() || 'Центральный район';
+        userReply(`Рассчитать доставку: ${val}`);
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            botReply(`🚚 Доставка по адресу **«${val}»** займет **45–60 минут**.\nСтоимость курьера: **Бесплатно** (в специальном аквабоксе на воде).`);
+        }, 600);
+    }
+
+    function quickSend(text) { handleMessage(text); }
+
+    function sendUserInput() {
+        const val = userInput.value.trim();
+        if (!val) return;
+        userInput.value = '';
+        handleMessage(val);
+    }
+
+    function handleMessage(text) {
+        userReply(text);
+        showTyping();
+
+        setTimeout(() => {
+            hideTyping();
+            const q = text.toLowerCase();
+
+            if (q.includes('все букет') || q.includes('каталог') || q.includes('витрин')) {
+                botReply("💐 Полная коллекция свежих авторских букетов:");
+                showCatalog(products);
+            }
+            else if (q.includes('свидан') || q.includes('романт') || q.includes('девушк') || q.includes('люб')) {
+                botReply("💕 Романтическая подборка для свидания:");
+                showCatalog(products.filter(p => p.category === 'romance'));
+            }
+            else if (q.includes('рожд') || q.includes('юбил') || q.includes('мам') || q.includes('коробк')) {
+                botReply("🎂 Праздничные букеты и композиции в шляпных коробках:");
+                showCatalog(products.filter(p => p.category === 'birthday'));
+            }
+            else if (q.includes('карт') || q.includes('достав') || q.includes('адрес') || q.includes('курьер')) {
+                botReply("🗺️ Доставляем круглосуточно за 60 минут! Проверьте ваш адрес на карте:");
+                showDeliveryMap();
+            }
+            else if (q.includes('промокод') || q.includes('скид') || q.includes('акци')) {
+                botReply("🎁 Ваш промокод **FLORA15** дает **скидку 15%** на первый заказ и бесплатную открытку!");
+            }
+            else if (q.includes('флорист') || q.includes('оператор') || q.includes('менеджер') || q.includes('человек')) {
+                botReply("👩‍🌾 Старший флорист Анна уже на связи! Вы также можете позвонить нам: **+7 (999) 123-45-67**.");
+            }
+            else {
+                botReply(`Я передал ваше пожелание (*«${text}»*) флористу 🌸. А пока вы можете выбрать букет из наличия ниже:`);
+                showCatalog(products);
+            }
+        }, 550);
+    }
+</script>
+
 </body>
 </html>
