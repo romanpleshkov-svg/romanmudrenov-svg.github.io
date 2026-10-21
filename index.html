@@ -52,33 +52,33 @@
         }
         .brand { display: flex; align-items: center; gap: 10px; }
         .avatar {
-            width: 40px; height: 40px; border-radius: 12px;
+            width: 42px; height: 42px; border-radius: 12px;
             background: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=200&q=80') center/cover;
             position: relative; box-shadow: var(--btn-shadow);
         }
         .online-dot {
-            position: absolute; bottom: -2px; right: -2px; width: 10px; height: 10px;
+            position: absolute; bottom: -2px; right: -2px; width: 11px; height: 11px;
             background: var(--success); border: 2px solid #fff; border-radius: 50%;
         }
-        .brand-text h1 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text-main); line-height: 1.1; }
+        .brand-text h1 { font-family: 'Playfair Display', serif; font-size: 1.08rem; color: var(--text-main); line-height: 1.1; }
         .brand-text span { font-size: 0.68rem; color: var(--primary); font-weight: 600; }
 
         .cart-trigger {
-            background: var(--surface); border: 1px solid #e9ecef; padding: 7px 12px; border-radius: 12px;
-            font-size: 0.8rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px; box-shadow: var(--btn-shadow); cursor: pointer;
+            background: var(--surface); border: 1px solid #e9ecef; padding: 8px 13px; border-radius: 12px;
+            font-size: 0.82rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px; box-shadow: var(--btn-shadow); cursor: pointer;
         }
         .badge { background: var(--gradient); color: #fff; padding: 2px 6px; border-radius: 8px; font-size: 0.7rem; }
 
         .chat-area {
-            flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;
+            flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;
         }
         .chat-area::-webkit-scrollbar { width: 3px; }
         .chat-area::-webkit-scrollbar-thumb { background: rgba(136, 152, 170, 0.25); border-radius: 4px; }
 
         .msg {
-            max-width: 98%; padding: 10px 12px; border-radius: 16px;
-            font-size: 0.88rem; line-height: 1.4; animation: popUp 0.2s ease forwards;
-            word-wrap: break-word; display: flex; flex-direction: column; gap: 8px;
+            max-width: 98%; padding: 12px; border-radius: 18px;
+            font-size: 0.88rem; line-height: 1.45; animation: popUp 0.22s ease forwards;
+            word-wrap: break-word; display: flex; flex-direction: column; gap: 10px;
         }
         @keyframes popUp {
             from { opacity: 0; transform: translateY(6px); }
@@ -87,56 +87,60 @@
 
         .msg.bot {
             background: var(--surface); color: var(--text-main); align-self: flex-start;
-            border-bottom-left-radius: 4px; box-shadow: 0 4px 12px rgba(50, 50, 93, 0.04);
+            border-bottom-left-radius: 4px; box-shadow: 0 4px 14px rgba(50, 50, 93, 0.05);
             border: 1px solid #f1f3f5; width: 100%;
         }
         .msg.user {
             background: var(--gradient); color: #fff; align-self: flex-end;
-            border-bottom-right-radius: 4px; box-shadow: 0 5px 12px rgba(245, 54, 92, 0.2); max-width: 80%;
+            border-bottom-right-radius: 4px; box-shadow: 0 5px 12px rgba(245, 54, 92, 0.22); max-width: 82%;
         }
 
-        /* Широкая и удобная карусель карточек */
+        /* Широкие и крупные карточки букетов */
         .carousel {
-            display: flex; gap: 12px; overflow-x: auto; padding: 6px 4px 10px 4px;
-            width: 100%; scroll-snap-type: x mandatory;
+            display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 10px 2px;
+            width: 100%; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
         }
         .carousel::-webkit-scrollbar { height: 6px; }
         .carousel::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 
         .product-card {
-            min-width: 200px; max-width: 200px; background: #fff; border-radius: 18px;
-            padding: 10px; scroll-snap-align: start; box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+            min-width: 235px; max-width: 235px; background: #fff; border-radius: 18px;
+            padding: 10px; scroll-snap-align: start; box-shadow: 0 6px 18px rgba(0,0,0,0.06);
             border: 1px solid #e9ecef; display: flex; flex-direction: column; flex-shrink: 0; cursor: pointer;
-            transition: transform 0.15s ease;
+            transition: transform 0.15s ease; position: relative;
         }
         .product-card:active { transform: scale(0.97); }
-        .product-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; }
+        .product-card img { width: 100%; height: 165px; object-fit: cover; border-radius: 12px; background: #f8f9fa; }
+        .zoom-hint {
+            position: absolute; top: 18px; right: 18px; background: rgba(0,0,0,0.55);
+            color: #fff; font-size: 0.65rem; padding: 4px 8px; border-radius: 12px; backdrop-filter: blur(4px);
+        }
         .p-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 8px; }
-        .p-title { font-weight: 700; font-size: 0.95rem; margin: 2px 0; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .p-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.25; height: 32px; overflow: hidden; }
+        .p-title { font-weight: 700; font-size: 0.98rem; margin: 2px 0 4px; color: var(--text-main); }
+        .p-desc { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; line-height: 1.3; }
         .p-footer {
             margin-top: auto; display: flex; align-items: center; justify-content: space-between;
             padding-top: 8px; border-top: 1px solid #f6f9fc;
         }
-        .p-price { font-weight: 700; font-size: 0.92rem; color: var(--text-main); }
+        .p-price { font-weight: 700; font-size: 0.96rem; color: var(--text-main); }
         .btn-buy {
-            background: var(--gradient); color: #fff; border: none; padding: 6px 12px;
-            border-radius: 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+            background: var(--gradient); color: #fff; border: none; padding: 7px 13px;
+            border-radius: 10px; font-size: 0.78rem; font-weight: 600; cursor: pointer; box-shadow: var(--btn-shadow);
         }
 
         .widget-card { background: var(--surface); border-radius: 14px; padding: 8px; border: 1px solid #e9ecef; width: 100%; }
-        .map-frame { width: 100%; height: 120px; border-radius: 8px; overflow: hidden; margin-bottom: 5px; background: #e9ecef; }
-        .widget-input { width: 100%; padding: 7px 10px; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.78rem; margin-bottom: 5px; outline: none; }
-        .widget-btn { width: 100%; background: var(--success); color: #fff; border: none; padding: 7px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; cursor: pointer; }
+        .map-frame { width: 100%; height: 135px; border-radius: 8px; overflow: hidden; margin-bottom: 6px; background: #e9ecef; }
+        .widget-input { width: 100%; padding: 9px 12px; border: 1px solid #dee2e6; border-radius: 10px; font-size: 0.82rem; margin-bottom: 6px; outline: none; }
+        .widget-btn { width: 100%; background: var(--success); color: #fff; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.84rem; cursor: pointer; }
 
         .quick-bar {
-            padding: 7px 10px; background: rgba(255, 255, 255, 0.98);
+            padding: 8px 10px; background: rgba(255, 255, 255, 0.98);
             border-top: 1px solid rgba(0, 0, 0, 0.05); display: flex; gap: 6px; overflow-x: auto; white-space: nowrap;
         }
         .quick-bar::-webkit-scrollbar { display: none; }
         .chip {
-            background: #fff; border: 1px solid #e9ecef; padding: 6px 11px; border-radius: 18px;
-            font-size: 0.74rem; font-weight: 600; color: var(--text-main); cursor: pointer;
+            background: #fff; border: 1px solid #e9ecef; padding: 7px 12px; border-radius: 18px;
+            font-size: 0.76rem; font-weight: 600; color: var(--text-main); cursor: pointer;
             box-shadow: 0 1px 3px rgba(50, 50, 93, 0.05); flex-shrink: 0;
         }
         .chip:active { background: var(--gradient); color: #fff; border-color: transparent; }
@@ -147,33 +151,38 @@
         }
         .footer-input input {
             flex: 1; border: 1px solid #e9ecef; background: #f6f9fc;
-            padding: 10px 14px; border-radius: 22px; font-size: 0.88rem; color: var(--text-main); outline: none;
+            padding: 11px 15px; border-radius: 22px; font-size: 0.88rem; color: var(--text-main); outline: none;
         }
         .send-btn {
-            width: 40px; height: 40px; border-radius: 50%; border: none;
-            background: var(--gradient); color: #fff; font-size: 0.95rem; cursor: pointer;
+            width: 42px; height: 42px; border-radius: 50%; border: none;
+            background: var(--gradient); color: #fff; font-size: 1rem; cursor: pointer;
             display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(245, 54, 92, 0.35); flex-shrink: 0;
         }
 
         /* Модальные окна */
         .modal-overlay {
-            position: absolute; inset: 0; background: rgba(50, 50, 93, 0.5);
-            backdrop-filter: blur(5px); z-index: 50; display: none; align-items: flex-end; justify-content: center;
+            position: fixed; inset: 0; background: rgba(30, 30, 60, 0.6);
+            backdrop-filter: blur(6px); z-index: 999; display: none; align-items: flex-end; justify-content: center;
         }
         .modal-overlay.active { display: flex; }
         .bottom-sheet {
-            width: 100%; max-height: 88%; background: #fff; border-radius: 24px 24px 0 0;
-            padding: 20px 18px 24px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto;
+            width: 100%; max-width: 480px; max-height: 90dvh; background: #fff; border-radius: 26px 26px 0 0;
+            padding: 20px 18px 26px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto;
+            animation: slideUp 0.25s ease-out;
         }
-        .sheet-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f3f5; padding-bottom: 8px; }
-        .close-sheet { background: #f6f9fc; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
-        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f6f9fc; font-size: 0.85rem; }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .sheet-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px; }
+        .close-sheet { background: #f1f3f5; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; font-weight: bold; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f6f9fc; font-size: 0.88rem; }
 
-        /* Большая карточка товара */
-        .product-modal-img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; margin-bottom: 10px; }
-        .product-modal-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-main); }
-        .product-modal-price { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin: 4px 0 10px; }
-        .product-modal-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 16px; }
+        /* Крупная карточка товара при нажатии */
+        .product-modal-img { width: 100%; height: 280px; object-fit: cover; border-radius: 18px; }
+        .product-modal-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--text-main); }
+        .product-modal-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+        .product-modal-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.45; background: #f8f9fe; padding: 12px; border-radius: 12px; }
     </style>
 </head>
 <body>
@@ -184,7 +193,7 @@
             <div class="avatar"><div class="online-dot"></div></div>
             <div class="brand-text">
                 <h1>Flower Bot 1.0</h1>
-                <span>Онлайн-консьерж</span>
+                <span>ИИ-Флорист • Онлайн</span>
             </div>
         </div>
         <button class="cart-trigger" onclick="toggleCartModal(true)">
@@ -195,42 +204,50 @@
     <div class="chat-area" id="chatArea"></div>
 
     <div class="quick-bar">
-        <div class="chip" onclick="quickSend('💐 Все букеты')">💐 Все букеты</div>
-        <div class="chip" onclick="quickSend('📸 Портфолио')">📸 Портфолио (12)</div>
-        <div class="chip" onclick="quickSend('💕 На свидание')">💕 На свидание</div>
+        <div class="chip" onclick="quickSend('📸 Портфолио')">📸 Портфолио (20 шт)</div>
+        <div class="chip" onclick="quickSend('💐 Хиты продаж')">💐 Хиты</div>
+        <div class="chip" onclick="quickSend('💕 На свидание')">💕 Свидание</div>
         <div class="chip" onclick="quickSend('🎂 День рождения')">🎂 День рождения</div>
+        <div class="chip" onclick="quickSend('🌿 Как ухаживать за цветами?')">🌿 Советы по уходу</div>
         <div class="chip" onclick="quickSend('🗺️ Карта доставки')">🗺️ Доставка</div>
-        <div class="chip" onclick="quickSend('🎁 Промокод')">🎁 Промокод</div>
-        <div class="chip" onclick="quickSend('👩‍🌾 Живой флорист')">👩‍🌾 Флорист</div>
+        <div class="chip" onclick="quickSend('🎁 Промокод')">🎁 Скидка 15%</div>
     </div>
 
     <div class="footer-input">
-        <input type="text" id="userInput" placeholder="Напишите ваш вопрос..." onkeypress="if(event.key==='Enter') sendUserInput()">
+        <input type="text" id="userInput" placeholder="Спросите про цветы, стойкость, повод..." onkeypress="if(event.key==='Enter') sendUserInput()">
         <button class="send-btn" onclick="sendUserInput()">➤</button>
     </div>
 
     <!-- Модалка корзины -->
-    <div class="modal-overlay" id="cartModal">
+    <div class="modal-overlay" id="cartModal" onclick="if(event.target===this) toggleCartModal(false)">
         <div class="bottom-sheet">
             <div class="sheet-header">
-                <h3>🛍️ Оформление заказа</h3>
+                <h3>🛍️ Ваш заказ</h3>
                 <button class="close-sheet" onclick="toggleCartModal(false)">✕</button>
             </div>
             <div id="cartItemsList"></div>
             <input type="text" class="widget-input" id="orderAddress" placeholder="📍 Адрес и время доставки">
-            <input type="text" class="widget-input" id="orderCardText" placeholder="💌 Текст для открытки">
-            <input type="tel" class="widget-input" id="orderPhone" placeholder="📞 Ваш телефон">
+            <input type="text" class="widget-input" id="orderCardText" placeholder="💌 Текст для бесплатной открытки">
+            <input type="tel" class="widget-input" id="orderPhone" placeholder="📞 Ваш телефон для связи">
             <button class="widget-btn" onclick="submitFinalOrder()">Подтвердить заказ</button>
         </div>
     </div>
 
-    <!-- Модалка карточки товара -->
-    <div class="modal-overlay" id="productModal">
+    <!-- Модалка детальной карточки букета -->
+    <div class="modal-overlay" id="productModal" onclick="if(event.target===this) closeProductModal()">
         <div class="bottom-sheet" id="productModalContent"></div>
     </div>
 </div>
 
 <script>
+    // =========================================================================
+    // НАСТРОЙКИ ИИ И ТЕЛЕГРАМ (По желанию можно вставить свои бесплатные ключи)
+    // =========================================================================
+    const GEMINI_API_KEY = ""; // Вставьте сюда бесплатный ключ из aistudio.google.com, если хотите подключить нейросеть Gemini
+    const TELEGRAM_BOT_TOKEN = ""; // Токен от @BotFather для отправки заказов вам в Telegram
+    const TELEGRAM_CHAT_ID = "";   // Ваш ID в Telegram
+
+    // Лепестки на фоне
     for (let i = 0; i < 8; i++) {
         const p = document.createElement('div');
         p.className = 'petal';
@@ -252,24 +269,35 @@
 
     let cart = [];
 
-    // Чистый каталог 100% из премиальных цветов и букетов
+    // =========================================================================
+    // КАТАЛОГ И ПОРТФОЛИО (20 проверенных фотографий настоящих букетов!)
+    // Чтобы добавить свой букет, просто скопируйте строчку и поменяйте id, title, price, img
+    // =========================================================================
     const products = [
-        { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы Остина, эвкалипт', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80' },
-        { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Французские пионы, гортензия', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80' },
-        { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Тюльпаны, гипсофила, ранункулюсы', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80' },
-        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Красные розы в шляпной коробке', price: 5400, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80' },
-        { id: 5, category: 'portfolio', tag: 'Эксклюзив', title: 'Прованский сад', desc: 'Лаванда, маттиола и кустовые розы', price: 5100, img: 'https://images.unsplash.com/photo-1508766917636-f65f717c1293?auto=format&fit=crop&w=600&q=80' },
-        { id: 6, category: 'portfolio', tag: 'Яркий микс', title: 'Солнечный день', desc: 'Желтые тюльпаны и мимоза', price: 4200, img: 'https://images.unsplash.com/photo-1533855049397-9419d12f3e8f?auto=format&fit=crop&w=600&q=80' },
-        { id: 7, category: 'portfolio', tag: 'Роскошь', title: 'Красный бархат', desc: '101 премиальная длинная роза', price: 12500, img: 'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=600&q=80' },
-        { id: 8, category: 'portfolio', tag: 'Свежесть', title: 'Морской бриз', desc: 'Синие дельфиниумы, белые эустомы', price: 4800, img: 'https://images.unsplash.com/photo-1562690868-60bbe7293e94?auto=format&fit=crop&w=600&q=80' },
-        { id: 9, category: 'portfolio', tag: 'Стиль', title: 'Зимняя вишня', desc: 'Темные каллы, бордовые пионы', price: 6200, img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80' },
-        { id: 10, category: 'portfolio', tag: 'Нежность', title: 'Ангельское дыхание', desc: 'Белые кустовые розы, хризантемы', price: 3600, img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=600&q=80' },
-        { id: 11, category: 'portfolio', tag: 'Арт-дизайн', title: 'Акварель', desc: 'Ранункулюсы, анемоны и зелень', price: 5900, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80' },
-        { id: 12, category: 'portfolio', tag: 'Премиум', title: 'Королевский шарм', desc: 'Гортензии и экзотические орхидеи', price: 9500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80' }
+        { id: 1, category: 'romance', tag: 'Хит продаж', title: 'Розовый кварц', desc: 'Пионовидные розы Остина, эвкалипт и матовый шелк', care: 'Подрезать стебли под углом 45°, менять воду каждые 2 дня.', size: 'Высота 45 см, диаметр 40 см', price: 4500, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=700&q=80' },
+        { id: 2, category: 'birthday', tag: 'Премиум', title: 'Утренний пион', desc: 'Французские пионы Сара Бернар и воздушная гортензия', care: 'Любят прохладную воду идали от прямых солнечных лучей.', size: 'Высота 50 см, диаметр 45 см', price: 6800, img: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=700&q=80' },
+        { id: 3, category: 'romance', tag: 'Нежность', title: 'Облако любви', desc: 'Голландские тюльпаны, ранункулюсы и гипсофила', care: 'Тюльпаны обожают холодную воду (можно добавить кубик льда).', size: 'Высота 40 см, диаметр 35 см', price: 3900, img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=700&q=80' },
+        { id: 4, category: 'birthday', tag: 'В коробке', title: 'Вечер в Париже', desc: 'Бархатные алые розы в дизайнерской шляпной коробке', care: 'Ваза не нужна! Поливать флористическую губку 1 раз в 2 дня (100 мл воды).', size: 'Высота 35 см, диаметр 30 см', price: 5400, img: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?auto=format&fit=crop&w=700&q=80' },
+        { id: 5, category: 'portfolio', tag: 'Эксклюзив', title: 'Лавандовый Прованс', desc: 'Ароматная лаванда, кустовые розы и белая эустома', care: 'Отлично сохраняет аромат и свежесть до 12 дней.', size: 'Высота 45 см, диаметр 38 см', price: 5100, img: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=700&q=80' },
+        { id: 6, category: 'portfolio', tag: 'Яркий микс', title: 'Солнечный поцелуй', desc: 'Желтые тюльпаны, нарциссы и весенняя зелень', care: 'Ставить в прохладное место, подрезать прямо.', size: 'Высота 40 см, диаметр 35 см', price: 4200, img: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80' },
+        { id: 7, category: 'romance', tag: 'Роскошь', title: 'Гран При (51 роза)', desc: 'Охапка из 51 премиальной длинной красной розы', care: 'Глубокая ваза с чистой водой и подкормкой Chrysal.', size: 'Высота 70 см, диаметр 50 см', price: 9900, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80' },
+        { id: 8, category: 'portfolio', tag: 'Свежесть', title: 'Небесная гортензия', desc: 'Голубые и белые шапки гортензий с эвкалиптом', care: 'Гортензия пьет много воды — следите, чтобы ваза была полной.', size: 'Высота 45 см, диаметр 42 см', price: 4800, img: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=80' },
+        { id: 9, category: 'portfolio', tag: 'Стиль', title: 'Винтажный бархат', desc: 'Персиковые розы Джульетта, диантусы и бруния', care: 'Неприхотливый букет, стоит в воде до 2 недель.', size: 'Высота 45 см, диаметр 40 см', price: 6200, img: 'https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=700&q=80' },
+        { id: 10, category: 'portfolio', tag: 'Нежность', title: 'Белый шелк', desc: 'Белоснежные кустовые розы и пушистые хризантемы', care: 'Удалять нижние листья, чтобы они не касались воды.', size: 'Высота 45 см, диаметр 35 см', price: 3600, img: 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?auto=format&fit=crop&w=700&q=80' },
+        { id: 11, category: 'portfolio', tag: 'Арт-дизайн', title: 'Коралловый риф', desc: 'Коралловые пионы, ранункулюсы и фисташка', care: 'Бутоны раскрываются в тепле за 24 часа.', size: 'Высота 45 см, диаметр 40 см', price: 5900, img: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=80' },
+        { id: 12, category: 'birthday', tag: 'Премиум', title: 'Королевский сад', desc: 'Авторская композиция из орхидей, роз и лизиантуса', care: 'Экзотические цветы высокой стойкости (до 14 дней).', size: 'Высота 55 см, диаметр 50 см', price: 8500, img: 'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=700&q=80' },
+        { id: 13, category: 'portfolio', tag: 'Весна', title: 'Розовый рассвет', desc: 'Нежно-розовые тюльпаны в крафтовой бумаге', care: 'Холодная вода, подрезка каждые 2 дня.', size: 'Высота 40 см, диаметр 30 см', price: 3400, img: 'https://images.unsplash.com/photo-1522057384400-681b421cfebc?auto=format&fit=crop&w=700&q=80' },
+        { id: 14, category: 'portfolio', tag: 'Стойкость', title: 'Сиреневый туман', desc: 'Маттиола, сирень и фиолетовые эустомы', care: 'Невероятный весенний аромат на всю комнату.', size: 'Высота 48 см, диаметр 40 см', price: 5300, img: 'https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=700&q=80' },
+        { id: 15, category: 'romance', tag: 'Классика', title: 'Симфония чувств', desc: 'Красные и белые розы с веточками гипсофилы', care: 'Подрезать стебли под водой.', size: 'Высота 50 см, диаметр 40 см', price: 4700, img: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=700&q=80' },
+        { id: 16, category: 'portfolio', tag: 'Эко-стиль', title: 'Лесная нимфа', desc: 'Полевые ромашки, васильки и декоративная зелень', care: 'Очень легкий и воздушный полевой букет.', size: 'Высота 42 см, диаметр 38 см', price: 3800, img: 'https://images.unsplash.com/photo-1470509037663-253afd7f0f51?auto=format&fit=crop&w=700&q=80' },
+        { id: 17, category: 'birthday', tag: 'В корзине', title: 'Праздничная корзина', desc: 'Плетеная корзина с пионовидными розами и зеленью', care: 'Внутри оазис с водой — просто доливайте немного воды сверху.', size: 'Высота 40 см, ширина 45 см', price: 7200, img: 'https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?auto=format&fit=crop&w=700&q=80' },
+        { id: 18, category: 'portfolio', tag: 'Сухоцветы', title: 'Вечное лето', desc: 'Композиция из лагуруса, хлопка и стабилизированных роз', care: 'Не требует воды! Простоит в интерьере от 1 до 3 лет.', size: 'Высота 40 см, диаметр 30 см', price: 4100, img: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80' },
+        { id: 19, category: 'portfolio', tag: 'Монобукет', title: 'Солнечный подсолнух', desc: 'Крупные декоративные подсолнухи с зеленью эвкалипта', care: 'Дарит заряд бодрости и отличного настроения.', size: 'Высота 50 см, диаметр 40 см', price: 3900, img: 'https://images.unsplash.com/photo-1470509037663-253afd7f0f51?auto=format&fit=crop&w=700&q=80' },
+        { id: 20, category: 'portfolio', tag: 'VIP', title: 'Императрица (101 роза)', desc: 'Грандиозный букет из 101 розовой и белой розы Кения', care: 'Поставляется в специальном большом аквабоксе.', size: 'Высота 60 см, диаметр 65 см', price: 14900, img: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=700&q=80' }
     ];
 
     window.addEventListener('DOMContentLoaded', () => {
-        botReplyWithCatalog("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nНажмите на любую карточку букета, чтобы открыть подробное фото и описание:", products.slice(0, 4));
+        botReplyWithCatalog("Здравствуйте! 🌸 Я **Flower Bot 1.0** — ваш персональный ИИ-флорист.\n\n• **Нажмите на фото букета**, чтобы открыть полную карточку товара.\n• Спрашивайте меня о стойкости цветов, уходе или подборе по бюджету!", products.slice(0, 5));
     });
 
     function botReply(text) {
@@ -288,7 +316,8 @@
         list.forEach(item => {
             railHtml += `
                 <div class="product-card" onclick="openProductCard(${item.id})">
-                    <img src="${item.img}" alt="${item.title}">
+                    <span class="zoom-hint">🔍 Нажмите</span>
+                    <img src="${item.img}" alt="${item.title}" loading="lazy">
                     <div class="p-tag">${item.tag}</div>
                     <div class="p-title">${item.title}</div>
                     <div class="p-desc">${item.desc}</div>
@@ -317,21 +346,30 @@
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
+    // Детальная карточка товара по клику на букет
     function openProductCard(id) {
         const item = products.find(p => p.id === id);
         if (!item) return;
 
         productModalContent.innerHTML = `
             <div class="sheet-header">
-                <h3>🌸 Карточка товара</h3>
+                <h3>🌸 О букете</h3>
                 <button class="close-sheet" onclick="closeProductModal()">✕</button>
             </div>
             <img src="${item.img}" alt="${item.title}" class="product-modal-img">
-            <div class="p-tag">${item.tag}</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span class="p-tag" style="font-size:0.75rem;">${item.tag}</span>
+                <span style="font-size:0.78rem; color:#2dce89; font-weight:700;">✓ В наличии</span>
+            </div>
             <div class="product-modal-title">${item.title}</div>
             <div class="product-modal-price">${item.price.toLocaleString()} ₽</div>
-            <div class="product-modal-desc">${item.desc}<br><br>✨ Свежие цветы в аквабоксе с подкормкой Chrysal в подарок. Бесплатная открытка и доставка за 60 минут!</div>
-            <button class="widget-btn" style="background:var(--primary); padding:12px; font-size:0.95rem;" onclick="addItemToCart(${item.id}); closeProductModal();">Добавить в корзину</button>
+            <div class="product-modal-desc">
+                <b>💐 Состав:</b> ${item.desc}<br>
+                <b>📏 Размер:</b> ${item.size || 'Высота 45 см, диаметр 40 см'}<br>
+                <b>🌿 Совет флориста:</b> ${item.care || 'Подрезать стебли под углом 45° и менять воду каждые 2 дня.'}<br><br>
+                🎁 <i>В комплекте: аквабокс с водой, подкормка Chrysal и дизайнерская открытка!</i>
+            </div>
+            <button class="widget-btn" style="background:var(--gradient); padding:14px; font-size:0.95rem;" onclick="addItemToCart(${item.id}); closeProductModal();">🛒 Добавить в корзину за ${item.price.toLocaleString()} ₽</button>
         `;
         productModal.classList.add('active');
     }
@@ -345,26 +383,26 @@
         if (!item) return;
         cart.push(item);
         cartCount.innerText = cart.length;
-        userReply(`Добавить «${item.title}»`);
+        userReply(`Выбрать «${item.title}»`);
         setTimeout(() => {
             const sum = cart.reduce((acc, el) => acc + el.price, 0);
-            botReply(`✅ Букет **«${item.title}»** в корзине! Сумма: **${sum.toLocaleString()} ₽**.\nНажмите **«🛒 Корзина»** вверху.`);
+            botReply(`✅ Букет **«${item.title}»** добавлен в корзину!\nОбщая сумма: **${sum.toLocaleString()} ₽**.\n\nНажмите **«🛒 Корзина»** в правом верхнем углу для оформления доставки.`);
         }, 250);
     }
 
     function toggleCartModal(open) {
         if (open) {
             if (cart.length === 0) {
-                botReply("🛒 Ваша корзина пуста. Выберите букет из каталога ниже:");
+                botReply("🛒 Ваша корзина пока пуста. Нажмите на любой букет или кнопку **«+ В корзину»**:");
                 return;
             }
             const sum = cart.reduce((acc, el) => acc + el.price, 0);
             cartItemsList.innerHTML = cart.map((item, idx) => `
                 <div class="cart-item-row">
                     <span><b>${item.title}</b></span>
-                    <span>${item.price.toLocaleString()} ₽ <button onclick="removeFromCart(${idx})" style="border:none;background:none;color:#f5365c;cursor:pointer;margin-left:6px;">✕</button></span>
+                    <span>${item.price.toLocaleString()} ₽ <button onclick="removeFromCart(${idx})" style="border:none;background:none;color:#f5365c;cursor:pointer;margin-left:8px;font-weight:bold;">✕</button></span>
                 </div>
-            `).join('') + `<div style="text-align:right;font-weight:700;margin-top:6px;">Итого: ${sum.toLocaleString()} ₽</div>`;
+            `).join('') + `<div style="text-align:right;font-weight:700;margin-top:8px;font-size:1rem;">Итого: ${sum.toLocaleString()} ₽</div>`;
             cartModal.classList.add('active');
         } else {
             cartModal.classList.remove('active');
@@ -378,16 +416,28 @@
         else toggleCartModal(true);
     }
 
-    function submitFinalOrder() {
-        const addr = document.getElementById('orderAddress').value.trim() || 'Уточнить адрес';
+    async function submitFinalOrder() {
+        const addr = document.getElementById('orderAddress').value.trim() || 'Уточнить у получателя';
         const cardText = document.getElementById('orderCardText').value.trim() || 'Без открытки';
         const phone = document.getElementById('orderPhone').value.trim() || 'Не указан';
         const sum = cart.reduce((acc, el) => acc + el.price, 0);
+        const itemsNames = cart.map(i => i.title).join(', ');
 
         toggleCartModal(false);
-        userReply(`Оформить заказ: ${addr}`);
+        userReply(`Оформить заказ: ${addr}, тел: ${phone}`);
+
+        // Если указан Telegram токен — отправляем заказ прямо в Telegram владельцу
+        if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+            const msg = `🌸 НОВЫЙ ЗАКАЗ!\nБукеты: ${itemsNames}\nСумма: ${sum} ₽\nАдрес: ${addr}\nОткрытка: ${cardText}\nТелефон: ${phone}`;
+            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: msg })
+            }).catch(() => {});
+        }
+
         setTimeout(() => {
-            botReply(`🎉 **Заказ успешно оформлен!**\n💰 К оплате: **${sum.toLocaleString()} ₽**\n📍 Адрес: ${addr}\n📞 Телефон: ${phone}\n\nФлорист собирает букет!`);
+            botReply(`🎉 **Заказ успешно принят!**\n\n💐 Состав: ${itemsNames}\n💰 К оплате: **${sum.toLocaleString()} ₽**\n📍 Адрес: ${addr}\n💌 Открытка: «${cardText}»\n📞 Телефон: ${phone}\n\nФлорист уже начал сборку букета!`);
             cart = [];
             cartCount.innerText = '0';
         }, 300);
@@ -397,12 +447,12 @@
         const div = document.createElement('div');
         div.className = 'msg bot';
         div.innerHTML = `
-            <div>🗺️ Укажите ваш адрес на карте для расчета курьера:</div>
+            <div>🗺️ Мы доставляем цветы за **45–60 минут** в аквабоксах! Введите ваш адрес под картой:</div>
             <div class="widget-card">
                 <div class="map-frame">
                     <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=37.58,55.73,37.65,55.77&layer=mapnik" width="100%" height="100%" frameborder="0" style="border:0;"></iframe>
                 </div>
-                <input type="text" class="widget-input" id="inlineAddr" placeholder="Введите ваш адрес...">
+                <input type="text" class="widget-input" id="inlineAddr" placeholder="Улица, дом, время доставки...">
                 <button class="widget-btn" onclick="calcDeliveryInline()">Рассчитать доставку</button>
             </div>
         `;
@@ -411,10 +461,10 @@
     }
 
     function calcDeliveryInline() {
-        const val = document.getElementById('inlineAddr').value.trim() || 'Центр';
+        const val = document.getElementById('inlineAddr').value.trim() || 'Центральный район';
         userReply(`Адрес: ${val}`);
         setTimeout(() => {
-            botReply(`🚚 Доставка по адресу **«${val}»** займет **45–60 минут**. В аквабоксе на воде!`);
+            botReply(`🚚 Доставка по адресу **«${val}»** займет **45–60 минут**. При заказе от 4 000 ₽ курьер привезет букет **бесплатно**!`);
         }, 300);
     }
 
@@ -426,28 +476,92 @@
         handleMessage(val);
     }
 
-    function handleMessage(text) {
+    // Умный ИИ-модуль (отвечает на любые цветочные вопросы + подключение к Gemini API при наличии ключа)
+    async function handleMessage(text) {
         userReply(text);
+        const q = text.toLowerCase();
+
+        // 1. Проверка быстрых команд и фильтров каталога
+        if (q.includes('портфолио') || q.includes('20') || q.includes('все работ')) {
+            setTimeout(() => botReplyWithCatalog("📸 Наше полное портфолио (**20 авторских букетов**). Нажмите на любое фото для увеличения:", products), 250);
+            return;
+        }
+        if (q.includes('хит') || q.includes('все букет') || q.includes('каталог')) {
+            setTimeout(() => botReplyWithCatalog("💐 Главные хиты сезона:", products.slice(0, 6)), 250);
+            return;
+        }
+        if (q.includes('свидан') || q.includes('романт') || q.includes('девушк') || q.includes('жене') || q.includes('люб')) {
+            setTimeout(() => botReplyWithCatalog("💕 Романтическая подборка для свидания и признания в чувствах:", products.filter(p => p.category === 'romance')), 250);
+            return;
+        }
+        if (q.includes('рожд') || q.includes('юбил') || q.includes('мам') || q.includes('бабуш') || q.includes('коллег')) {
+            setTimeout(() => botReplyWithCatalog("🎂 Праздничные букеты и композиции в шляпных коробках и корзинах:", products.filter(p => p.category === 'birthday')), 250);
+            return;
+        }
+        if (q.includes('карт') || q.includes('достав') || q.includes('адрес') || q.includes('курьер')) {
+            setTimeout(() => showDeliveryMap(), 250);
+            return;
+        }
+
+        // 2. Экспертная цветочная база знаний ИИ-флориста
+        if (q.includes('ухаж') || q.includes('уход') || q.includes('стоял') || q.includes('долго') || q.includes('стойк') || q.includes('вян')) {
+            setTimeout(() => botReply("🌿 **5 правил от шеф-флориста, чтобы букет простоял до 2 недель:**\n\n1. **Подрезка:** Подрезайте стебли острым ножом или секатором под углом 45°.\n2. **Вода:** Меняйте воду каждые 1–2 дня и мойте вазу.\n3. **Подкормка:** Добавьте пакетик **Chrysal** (мы дарим его бесплатно к каждому букету!).\n4. **Место:** Держите цветы вдали от батарей, сквозняков и прямого солнца.\n5. **Композиции в коробке:** Не вынимайте цветы! Просто подливайте по 100 мл воды раз в 2 дня прямо на флористическую губку."), 300);
+            return;
+        }
+        if (q.includes('аллерг') || q.includes('без запах') || q.includes('пахн')) {
+            setTimeout(() => {
+                botReply("🌸 Если у получателя чувствительность к запахам или аллергия, мы рекомендуем **букеты без резкого аромата и пыльцы**: эустомы, ранункулюсы, гортензии и классические розы.");
+                botReplyWithCatalog("Вот гипоаллергенные варианты:", [products[0], products[7], products[9]]);
+            }, 300);
+            return;
+        }
+        if (q.includes('дешев') || q.includes('недорог') || q.includes('бюджет') || q.includes('до 4000')) {
+            setTimeout(() => {
+                botReply("💳 Мы подобрали для вас стильные и свежие букеты в бюджете **до 4 200 ₽**:");
+                botReplyWithCatalog("Бюджетная коллекция:", products.filter(p => p.price <= 4200));
+            }, 300);
+            return;
+        }
+        if (q.includes('дорог') || q.includes('vip') || q.includes('вип') || q.includes('101') || q.includes('огромн')) {
+            setTimeout(() => {
+                botReply("👑 Наша **VIP-коллекция** из премиальных пионов, орхидей и 51–101 розы:");
+                botReplyWithCatalog("Премиум букеты:", products.filter(p => p.price >= 6500));
+            }, 300);
+            return;
+        }
+        if (q.includes('промокод') || q.includes('скид') || q.includes('акци')) {
+            setTimeout(() => botReply("🎁 Ваш промокод **FLORA15** дает **скидку 15%** на первый заказ, а также бесплатную открытку и средство для стойкости цветов!"), 250);
+            return;
+        }
+        if (q.includes('флорист') || q.includes('оператор') || q.includes('телефон') || q.includes('контакт')) {
+            setTimeout(() => botReply("👩‍🌾 Старший флорист на связи! Наш телефон и WhatsApp/Telegram: **+7 (999) 123-45-67**."), 250);
+            return;
+        }
+
+        // 3. Если вставлен бесплатный ключ GEMINI_API_KEY — отвечает настоящая нейросеть Google Gemini
+        if (GEMINI_API_KEY) {
+            try {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Ты вежливый ИИ-флорист магазина Flower Bot 1.0. Кратко и с эмодзи ответь клиенту на вопрос о цветах: "${text}"` }] }]
+                    })
+                });
+                const data = await res.json();
+                const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (aiText) {
+                    botReply(aiText);
+                    return;
+                }
+            } catch (e) {}
+        }
+
+        // 4. Универсальный умный ответ по умолчанию
         setTimeout(() => {
-            const q = text.toLowerCase();
-            if (q.includes('портфолио')) {
-                botReplyWithCatalog("📸 Наше полное портфолио (12 авторских работ в наличии):", products);
-            } else if (q.includes('все букет') || q.includes('каталог')) {
-                botReplyWithCatalog("💐 Актуальная витрина букетов:", products.slice(0, 4));
-            } else if (q.includes('свидан') || q.includes('романт')) {
-                botReplyWithCatalog("💕 Романтические композиции для свидания:", products.filter(p => p.category === 'romance'));
-            } else if (q.includes('рожд') || q.includes('юбил') || q.includes('мам')) {
-                botReplyWithCatalog("🎂 Подарочные букеты и композиции в коробках:", products.filter(p => p.category === 'birthday'));
-            } else if (q.includes('карт') || q.includes('достав') || q.includes('адрес')) {
-                showDeliveryMap();
-            } else if (q.includes('промокод') || q.includes('скид')) {
-                botReply("🎁 Ваш промокод **FLORA15** дает скидку 15% на первый заказ!");
-            } else if (q.includes('флорист') || q.includes('оператор')) {
-                botReply("👩‍🌾 Старший флорист на связи! Телефон: **+7 (999) 123-45-67**.");
-            } else {
-                botReplyWithCatalog(`🌸 Вот лучшие варианты по вашему запросу:`, products.slice(0, 4));
-            }
-        }, 300);
+            botReply(`🌸 Отличный вопрос! Наши флористы соберут идеальную композицию под ваш запрос (*«${text}»*) из сегодняшней поставки свежих цветов.\n\nПосмотрите наше полное портфолио из 20 букетов (нажмите на любой букет для просмотра состава и размера):`);
+            botReplyWithCatalog("Популярные букеты:", products.slice(0, 8));
+        }, 350);
     }
 </script>
 
