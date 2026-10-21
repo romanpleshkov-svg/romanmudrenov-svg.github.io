@@ -4,157 +4,120 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Flower Bot 1.0 — Цветочная мастерская</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #f5365c;
-  --grad: linear-gradient(87deg, #f5365c 0, #f56036 100%);
-  --bg: #f8f9fe;
-  --text: #2b2b43;
-  --muted: #83889c;
-  --ok: #2dce89;
-  --border: #edf0f7;
-  --shadow: 0 10px 28px rgba(43,43,67,0.06);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); height: 100vh; height: 100dvh; width: 100vw; display: flex; flex-direction: column; overflow: hidden; }
-
-/* Шапка */
-.navbar { height: 64px; background: #fff; border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; z-index: 20; }
-.brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.logo { width: 40px; height: 40px; border-radius: 12px; background: var(--grad); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; }
-.brand h1 { font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 1.1; }
-.brand span { font-size: 0.72rem; color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 5px; }
-.dot { width: 7px; height: 7px; background: var(--ok); border-radius: 50%; display: inline-block; }
-
-.nav-tabs { display: flex; gap: 6px; }
-.nav-tab { padding: 8px 14px; border-radius: 10px; border: none; background: transparent; font-weight: 600; font-size: 0.85rem; color: var(--muted); cursor: pointer; }
-.nav-tab.active, .nav-tab:hover { color: var(--primary); background: #fff0f3; }
-
-.actions { display: flex; gap: 8px; }
-.btn-top { background: #fff; border: 1px solid var(--border); padding: 8px 13px; border-radius: 12px; font-size: 0.82rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 6px; cursor: pointer; }
-.badge { background: var(--grad); color: #fff; padding: 2px 6px; border-radius: 7px; font-size: 0.7rem; }
-
-/* Сетка ПК / Мобильный */
-.workspace { flex: 1; display: grid; grid-template-columns: 1fr 400px; overflow: hidden; min-height: 0; }
-.showcase { height: 100%; overflow-y: auto; padding: 22px; display: flex; flex-direction: column; gap: 18px; min-height: 0; }
-.banner { background: linear-gradient(120deg, #2b2b43 0%, #4a2545 100%); border-radius: 20px; padding: 22px 26px; color: #fff; flex-shrink: 0; }
-.banner h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
-.banner p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 12px; line-height: 1.4; }
-.btn-grad { background: var(--grad); color: #fff; border: none; padding: 9px 16px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
-
-.filters { display: flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
-.pill { padding: 7px 14px; border-radius: 18px; border: 1px solid var(--border); background: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
-.pill.active { background: var(--grad); color: #fff; border-color: transparent; }
-
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 30px; }
-.card { background: #fff; border-radius: 16px; padding: 10px; border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; cursor: pointer; position: relative; transition: transform 0.15s; }
-.card:hover { transform: translateY(-3px); }
-.card img { width: 100%; height: 195px; object-fit: cover; border-radius: 12px; background: #f1f3f6; }
-.tag { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; color: var(--primary); margin-top: 8px; }
-.title { font-weight: 700; font-size: 0.96rem; margin: 2px 0; }
-.desc { font-size: 0.76rem; color: var(--muted); margin-bottom: 8px; line-height: 1.3; }
-.foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--border); }
-.price { font-weight: 700; font-size: 0.96rem; }
-
-/* Чат */
-.chat-panel { height: 100%; background: #fff; border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
-.chat-head { padding: 12px 16px; background: #fcfcfd; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; font-weight: 700; flex-shrink: 0; }
-.chat-box { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(180deg,#fff 0%,#fff8fa 100%); min-height: 0; }
-.msg { max-width: 88%; padding: 11px 14px; border-radius: 16px; font-size: 0.86rem; line-height: 1.45; word-wrap: break-word; }
-.msg.bot { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
-.msg.user { background: var(--grad); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
-.chat-link { display: inline-block; margin-top: 8px; padding: 7px 12px; background: #fff0f3; color: var(--primary); border-radius: 8px; font-weight: 700; font-size: 0.78rem; cursor: pointer; }
-
-.chips { padding: 8px 10px; background: #fff; border-top: 1px solid var(--border); display: flex; gap: 6px; overflow-x: auto; white-space: nowrap; flex-shrink: 0; }
-.chips::-webkit-scrollbar { display: none; }
-.chip { background: #f8f9fe; border: 1px solid var(--border); padding: 6px 11px; border-radius: 16px; font-size: 0.75rem; font-weight: 600; cursor: pointer; flex-shrink: 0; }
-.chip:active { background: var(--grad); color: #fff; }
-
-.input-bar { padding: 10px 12px; background: #fff; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-.input-bar input { flex: 1; border: 1px solid var(--border); background: #f8f9fe; padding: 11px 14px; border-radius: 22px; font-size: 0.86rem; outline: none; }
-.send { width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--grad); color: #fff; cursor: pointer; flex-shrink: 0; }
-
-/* Модалки */
-.modal { position: fixed; inset: 0; background: rgba(25,25,45,0.6); backdrop-filter: blur(5px); z-index: 999; display: none; align-items: center; justify-content: center; padding: 14px; }
-.modal.open { display: flex; }
-.modal-card { width: 100%; max-width: 460px; max-height: 90dvh; background: #fff; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
-.modal-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-.close-btn { background: #f1f3f5; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; }
-.inp { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 0.85rem; background: #f8f9fe; outline: none; }
-
-.m-switch { display: none; }
-@media (max-width: 900px) {
-  .nav-tabs, .lbl { display: none; }
-  .workspace { grid-template-columns: 1fr; }
-  .showcase { display: none; padding: 12px; }
-  .showcase.m-show { display: flex; }
-  .chat-panel.m-hide { display: none; }
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .card img { height: 140px; }
-  .title, .price { font-size: 0.85rem; }
-  .desc { font-size: 0.68rem; height: 28px; overflow: hidden; }
-  .m-switch { display: flex; background: #fff; border-bottom: 1px solid var(--border); padding: 6px 12px; gap: 8px; flex-shrink: 0; }
-  .m-btn { flex: 1; padding: 8px; border-radius: 10px; border: none; font-weight: 700; font-size: 0.8rem; background: #f8f9fe; color: var(--muted); cursor: pointer; }
-  .m-btn.active { background: var(--grad); color: #fff; }
+:root { --primary:#f5365c; --grad:linear-gradient(87deg,#f5365c 0,#f56036 100%); --bg:#f8f9fe; --text:#2b2b43; --muted:#83889c; --ok:#2dce89; --border:#edf0f7; }
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+body { background:var(--bg); color:var(--text); height:100vh; height:100dvh; width:100vw; display:flex; flex-direction:column; overflow:hidden; }
+.navbar { height:62px; background:#fff; border-bottom:1px solid var(--border); padding:0 18px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.brand { display:flex; align-items:center; gap:10px; cursor:pointer; }
+.logo { width:38px; height:38px; border-radius:11px; background:var(--grad); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.2rem; }
+.brand h1 { font-size:1.15rem; font-weight:800; line-height:1.1; }
+.brand span { font-size:0.7rem; color:var(--muted); font-weight:600; display:flex; align-items:center; gap:4px; }
+.dot { width:7px; height:7px; background:var(--ok); border-radius:50%; display:inline-block; }
+.nav-tabs { display:flex; gap:6px; }
+.nav-tab { padding:8px 14px; border-radius:10px; border:none; background:transparent; font-weight:600; font-size:0.84rem; color:var(--muted); cursor:pointer; }
+.nav-tab.active { color:var(--primary); background:#fff0f3; }
+.actions { display:flex; gap:8px; }
+.btn-top { background:#fff; border:1px solid var(--border); padding:8px 12px; border-radius:11px; font-size:0.8rem; font-weight:700; color:var(--text); display:flex; align-items:center; gap:6px; cursor:pointer; }
+.badge { background:var(--grad); color:#fff; padding:2px 6px; border-radius:7px; font-size:0.7rem; }
+.workspace { flex:1; display:grid; grid-template-columns:1fr 390px; overflow:hidden; min-height:0; }
+.showcase { height:100%; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:16px; min-height:0; }
+.banner { background:linear-gradient(120deg,#2b2b43 0%,#4a2545 100%); border-radius:18px; padding:20px; color:#fff; flex-shrink:0; }
+.banner h2 { font-size:1.4rem; margin-bottom:6px; }
+.banner p { font-size:0.84rem; opacity:0.9; margin-bottom:12px; line-height:1.4; }
+.btn-grad { background:var(--grad); color:#fff; border:none; padding:9px 15px; border-radius:10px; font-weight:700; font-size:0.8rem; cursor:pointer; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; flex-shrink:0; }
+.pill { padding:7px 14px; border-radius:18px; border:1px solid var(--border); background:#fff; font-size:0.78rem; font-weight:600; cursor:pointer; }
+.pill.active { background:var(--grad); color:#fff; border-color:transparent; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:14px; padding-bottom:30px; }
+.card { background:#fff; border-radius:16px; padding:10px; border:1px solid var(--border); box-shadow:0 8px 20px rgba(0,0,0,0.04); display:flex; flex-direction:column; cursor:pointer; }
+.card img { width:100%; height:185px; object-fit:cover; border-radius:11px; background:#f1f3f6; }
+.tag { font-size:0.62rem; font-weight:700; text-transform:uppercase; color:var(--primary); margin-top:8px; }
+.title { font-weight:700; font-size:0.94rem; margin:2px 0; }
+.desc { font-size:0.74rem; color:var(--muted); margin-bottom:8px; line-height:1.3; }
+.foot { margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px solid var(--border); }
+.price { font-weight:700; font-size:0.94rem; }
+.chat-panel { height:100%; background:#fff; border-left:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; min-height:0; }
+.chat-head { padding:12px 16px; background:#fcfcfd; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:0.84rem; font-weight:700; flex-shrink:0; }
+.chat-box { flex:1; padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; background:linear-gradient(180deg,#fff 0%,#fff8fa 100%); min-height:0; }
+.msg { max-width:88%; padding:10px 13px; border-radius:15px; font-size:0.85rem; line-height:1.42; word-wrap:break-word; }
+.msg.bot { background:#fff; align-self:flex-start; border-bottom-left-radius:4px; border:1px solid var(--border); }
+.msg.user { background:var(--grad); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+.chat-link { display:inline-block; margin-top:8px; padding:7px 12px; background:#fff0f3; color:var(--primary); border-radius:8px; font-weight:700; font-size:0.76rem; cursor:pointer; }
+.chips { padding:8px 10px; background:#fff; border-top:1px solid var(--border); display:flex; gap:6px; overflow-x:auto; white-space:nowrap; flex-shrink:0; }
+.chips::-webkit-scrollbar { display:none; }
+.chip { background:#f8f9fe; border:1px solid var(--border); padding:6px 11px; border-radius:16px; font-size:0.74rem; font-weight:600; cursor:pointer; flex-shrink:0; }
+.input-bar { padding:10px 12px; background:#fff; border-top:1px solid var(--border); display:flex; gap:8px; align-items:center; flex-shrink:0; }
+.input-bar input { flex:1; border:1px solid var(--border); background:#f8f9fe; padding:10px 14px; border-radius:20px; font-size:0.85rem; outline:none; }
+.send { width:38px; height:38px; border-radius:50%; border:none; background:var(--grad); color:#fff; cursor:pointer; flex-shrink:0; }
+.modal { position:fixed; inset:0; background:rgba(25,25,45,0.6); z-index:999; display:none; align-items:center; justify-content:center; padding:14px; }
+.modal.open { display:flex; }
+.modal-card { width:100%; max-width:440px; max-height:90dvh; background:#fff; border-radius:20px; padding:18px; display:flex; flex-direction:column; gap:10px; overflow-y:auto; }
+.modal-head { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:8px; }
+.close-btn { background:#f1f3f5; border:none; width:28px; height:28px; border-radius:50%; cursor:pointer; font-weight:bold; }
+.inp { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; font-size:0.84rem; background:#f8f9fe; outline:none; }
+.m-switch { display:none; }
+@media (max-width:900px) {
+  .nav-tabs,.lbl { display:none; }
+  .workspace { grid-template-columns:1fr; }
+  .showcase { display:none; padding:12px; }
+  .showcase.m-show { display:flex; }
+  .chat-panel.m-hide { display:none; }
+  .grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .card img { height:135px; }
+  .title,.price { font-size:0.84rem; }
+  .desc { font-size:0.68rem; height:28px; overflow:hidden; }
+  .m-switch { display:flex; background:#fff; border-bottom:1px solid var(--border); padding:6px 12px; gap:8px; flex-shrink:0; }
+  .m-btn { flex:1; padding:8px; border-radius:10px; border:none; font-weight:700; font-size:0.8rem; background:#f8f9fe; color:var(--muted); cursor:pointer; }
+  .m-btn.active { background:var(--grad); color:#fff; }
 }
 </style>
 </head>
 <body>
-
 <header class="navbar">
   <div class="brand" onclick="setTab('shop')">
     <div class="logo">🌸</div>
-    <div>
-      <h1>Flower Bot 1.0</h1>
-      <span><i class="dot"></i> Цветочная мастерская</span>
-    </div>
+    <div><h1>Flower Bot 1.0</h1><span><i class="dot"></i> Цветочная мастерская</span></div>
   </div>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="filterCat('all', this)">💐 Портфолио (20)</button>
-    <button class="nav-tab" onclick="filterCat('romance', this)">💕 Свидание</button>
-    <button class="nav-tab" onclick="filterCat('birthday', this)">🎂 День рождения</button>
-    <button class="nav-tab" onclick="filterCat('vip', this)">👑 VIP Букеты</button>
+    <button class="nav-tab active" onclick="filterCat('all',this)">💐 Портфолио (20)</button>
+    <button class="nav-tab" onclick="filterCat('romance',this)">💕 Свидание</button>
+    <button class="nav-tab" onclick="filterCat('birthday',this)">🎂 День рождения</button>
+    <button class="nav-tab" onclick="filterCat('vip',this)">👑 VIP Букеты</button>
   </div>
   <div class="actions">
     <button class="btn-top" onclick="openCabinet()">👤 <span class="lbl" id="cabLabel">Личный кабинет</span></button>
     <button class="btn-top" onclick="openCart()">🛒 <span class="lbl">Корзина</span> <span class="badge" id="cartBadge">0</span></button>
   </div>
 </header>
-
 <div class="m-switch">
   <button class="m-btn active" id="btnShop" onclick="setTab('shop')">💐 Каталог (20 букетов)</button>
   <button class="m-btn" id="btnChat" onclick="setTab('chat')">💬 Чат с флористом</button>
 </div>
-
 <div class="workspace">
   <section class="showcase m-show" id="shopView">
     <div class="banner">
       <h2>Авторское Портфолио Flower Bot 1.0</h2>
-      <p>20 дизайнерских букетов со свежей поставки. Нажмите на любой букет, чтобы открыть подробную карточку товара.</p>
+      <p>20 дизайнерских букетов со свежей поставки. Нажмите на любой букет, чтобы открыть карточку товара.</p>
       <button class="btn-grad" onclick="openCabinet()">🎁 Получить 500 бонусов за регистрацию</button>
     </div>
     <div class="filters">
-      <button class="pill active" onclick="filterCat('all', this)">Все 20 букетов</button>
-      <button class="pill" onclick="filterCat('romance', this)">Романтика</button>
-      <button class="pill" onclick="filterCat('birthday', this)">День рождения</button>
-      <button class="pill" onclick="filterCat('vip', this)">VIP коллекция</button>
+      <button class="pill active" onclick="filterCat('all',this)">Все 20 букетов</button>
+      <button class="pill" onclick="filterCat('romance',this)">Романтика</button>
+      <button class="pill" onclick="filterCat('birthday',this)">День рождения</button>
+      <button class="pill" onclick="filterCat('vip',this)">VIP коллекция</button>
     </div>
     <div class="grid" id="gridBox"></div>
   </section>
-
   <aside class="chat-panel m-hide" id="chatView">
-    <div class="chat-head">
-      <span><i class="dot"></i> Флорист-консультант</span>
-      <span style="color:var(--muted);font-weight:500;font-size:0.75rem;">Онлайн 24/7</span>
-    </div>
+    <div class="chat-head"><span><i class="dot"></i> Флорист-консультант</span><span style="color:var(--muted);font-size:0.74rem;">Онлайн 24/7</span></div>
     <div class="chat-box" id="chatBox"></div>
     <div class="chips">
       <div class="chip" onclick="ask('💕 Подбери букет на свидание')">💕 На свидание</div>
       <div class="chip" onclick="ask('🎂 Букет на День рождения')">🎂 День рождения</div>
       <div class="chip" onclick="ask('👑 Покажи VIP букеты')">👑 VIP коллекция</div>
       <div class="chip" onclick="ask('🌿 Как ухаживать за цветами?')">🌿 Уход за цветами</div>
-      <div class="chip" onclick="ask('🗺️ Условия и карта доставки')">🗺️ Доставка</div>
+      <div class="chip" onclick="ask('🗺️ Условия доставки')">🗺️ Доставка</div>
       <div class="chip" onclick="ask('🎁 Промокод на скидку')">🎁 Промокод</div>
     </div>
     <div class="input-bar">
@@ -163,19 +126,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); colo
     </div>
   </aside>
 </div>
-
-<div class="modal" id="itemModal" onclick="if(event.target===this) closeModals()">
-  <div class="modal-card" id="itemModalBody"></div>
-</div>
-
-<div class="modal" id="cabModal" onclick="if(event.target===this) closeModals()">
-  <div class="modal-card" id="cabModalBody"></div>
-</div>
-
-<div class="modal" id="cartModal" onclick="if(event.target===this) closeModals()">
-  <div class="modal-card" id="cartModalBody"></div>
-</div>
-
+<div class="modal" id="itemModal" onclick="if(event.target===this) closeModals()"><div class="modal-card" id="itemModalBody"></div></div>
+<div class="modal" id="cabModal" onclick="if(event.target===this) closeModals()"><div class="modal-card" id="cabModalBody"></div></div>
+<div class="modal" id="cartModal" onclick="if(event.target===this) closeModals()"><div class="modal-card" id="cartModalBody"></div></div>
 <script>
 const im = [
   'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=600&q=80',
@@ -199,39 +152,35 @@ const im = [
   'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80',
   'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=600&q=80'
 ];
-
 const items = [
-  { id:1, cat:'romance', tag:'Хит продаж', title:'Розовый кварц', desc:'Пионовидные розы Остина, эвкалипт и матовый шелк', price:4500, img:im[0] },
-  { id:2, cat:'birthday', tag:'Премиум', title:'Утренний пион', desc:'Французские пионы Сара Бернар и воздушная гортензия', price:6800, img:im[1] },
-  { id:3, cat:'romance', tag:'Нежность', title:'Облако любви', desc:'Белые тюльпаны, ранункулюсы и воздушная гипсофила', price:3900, img:im[2] },
-  { id:4, cat:'birthday', tag:'В коробке', title:'Вечер в Париже', desc:'Бархатные алые розы в круглой шляпной коробке', price:5400, img:im[3] },
+  { id:1, cat:'romance', tag:'Хит продаж', title:'Розовый кварц', desc:'Пионовидные розы Остина и эвкалипт', price:4500, img:im[0] },
+  { id:2, cat:'birthday', tag:'Премиум', title:'Утренний пион', desc:'Французские пионы Сара Бернар и гортензия', price:6800, img:im[1] },
+  { id:3, cat:'romance', tag:'Нежность', title:'Облако любви', desc:'Белые тюльпаны, ранункулюсы и гипсофила', price:3900, img:im[2] },
+  { id:4, cat:'birthday', tag:'В коробке', title:'Вечер в Париже', desc:'Бархатные алые розы в шляпной коробке', price:5400, img:im[3] },
   { id:5, cat:'romance', tag:'Прованс', title:'Лавандовый бриз', desc:'Ароматная лаванда, кустовые розы и маттиола', price:5100, img:im[4] },
-  { id:6, cat:'birthday', tag:'Яркий микс', title:'Солнечный поцелуй', desc:'Желтые тюльпаны, нарциссы и весенняя мимоза', price:4200, img:im[5] },
-  { id:7, cat:'vip', tag:'Роскошь', title:'Гран При (51 роза)', desc:'Охапка из 51 длинной премиальной красной розы', price:9900, img:im[6] },
-  { id:8, cat:'romance', tag:'Свежесть', title:'Небесная лазурь', desc:'Голубые шапки гортензий, белые эустомы и эвкалипт', price:4800, img:im[7] },
-  { id:9, cat:'vip', tag:'Арт-стиль', title:'Персиковый Джульетта', desc:'Английские розы Дэвида Остина сорта Джульетта', price:7400, img:im[8] },
-  { id:10, cat:'romance', tag:'Классика', title:'Белый шелк', desc:'Белоснежные кустовые розы и пушистые хризантемы', price:3600, img:im[9] },
+  { id:6, cat:'birthday', tag:'Яркий микс', title:'Солнечный поцелуй', desc:'Желтые тюльпаны, нарциссы и мимоза', price:4200, img:im[5] },
+  { id:7, cat:'vip', tag:'Роскошь', title:'Гран При (51 роза)', desc:'Охапка из 51 длинной красной розы', price:9900, img:im[6] },
+  { id:8, cat:'romance', tag:'Свежесть', title:'Небесная лазурь', desc:'Голубые гортензии, белые эустомы и эвкалипт', price:4800, img:im[7] },
+  { id:9, cat:'vip', tag:'Арт-стиль', title:'Персиковый Джульетта', desc:'Английские розы Дэвида Остина', price:7400, img:im[8] },
+  { id:10, cat:'romance', tag:'Классика', title:'Белый шелк', desc:'Белоснежные кустовые розы и хризантемы', price:3600, img:im[9] },
   { id:11, cat:'birthday', tag:'Экзотика', title:'Коралловый риф', desc:'Коралловые пионы, ранункулюсы и фисташка', price:5900, img:im[10] },
   { id:12, cat:'vip', tag:'VIP', title:'Королевский шарм', desc:'Каскадная композиция из белых орхидей и роз', price:8900, img:im[11] },
-  { id:13, cat:'romance', tag:'Весна', title:'Розовый рассвет', desc:'Нежно-розовые голландские тюльпаны в матовой пленке', price:3500, img:im[12] },
+  { id:13, cat:'romance', tag:'Весна', title:'Розовый рассвет', desc:'Нежно-розовые голландские тюльпаны', price:3500, img:im[12] },
   { id:14, cat:'birthday', tag:'Аромат', title:'Сиреневый туман', desc:'Душистая сирень, фиолетовая маттиола и эустома', price:5300, img:im[13] },
-  { id:15, cat:'romance', tag:'Любовь', title:'Симфония сердец', desc:'Дуэт красных и белых роз с облаком гипсофилы', price:4700, img:im[14] },
-  { id:16, cat:'birthday', tag:'Эко-стиль', title:'Полевая нимфа', desc:'Садовые ромашки, васильки и декоративная зелень', price:3800, img:im[15] },
+  { id:15, cat:'romance', tag:'Любовь', title:'Симфония сердец', desc:'Дуэт красных и белых роз с гипсофилой', price:4700, img:im[14] },
+  { id:16, cat:'birthday', tag:'Эко-стиль', title:'Полевая нимфа', desc:'Садовые ромашки, васильки и зелень', price:3800, img:im[15] },
   { id:17, cat:'vip', tag:'В корзине', title:'Изобилие Флоры', desc:'Большая плетеная корзина с пионами и розами', price:7800, img:im[16] },
   { id:18, cat:'birthday', tag:'Интерьер', title:'Пудровый бархат', desc:'Композиция из пионовидных роз и эвкалипта', price:4400, img:im[17] },
   { id:19, cat:'birthday', tag:'Радость', title:'Тосканское солнце', desc:'Крупные декоративные подсолнухи с зеленью', price:3900, img:im[18] },
   { id:20, cat:'vip', tag:'Гранд VIP', title:'Императрица (101 роза)', desc:'Грандиозный букет из 101 бело-розовой розы', price:14900, img:im[19] }
 ];
-
 let cart = [];
 let user = JSON.parse(localStorage.getItem('fb_user') || 'null');
-
 function init() {
   renderGrid(items);
   updateCabBtn();
   botMsg("Здравствуйте! 🌸 Добро пожаловать в **Flower Bot 1.0**.\n\nЯ ваш персональный флорист-консультант. Помогу выбрать букет из наших 20 авторских работ, расскажу об уходе за цветами и оформлю доставку за 45 минут!");
 }
-
 function renderGrid(list) {
   document.getElementById('gridBox').innerHTML = list.map(i => `
     <div class="card" onclick="showItem(${i.id})">
@@ -246,49 +195,44 @@ function renderGrid(list) {
     </div>
   `).join('');
 }
-
 function filterCat(cat, btn) {
   document.querySelectorAll('.pill, .nav-tab').forEach(e => e.classList.remove('active'));
   if(btn) btn.classList.add('active');
   renderGrid(cat === 'all' ? items : items.filter(x => x.cat === cat));
   if(window.innerWidth <= 900) setTab('shop');
 }
-
 function setTab(t) {
   document.getElementById('shopView').classList.toggle('m-show', t === 'shop');
   document.getElementById('chatView').classList.toggle('m-hide', t === 'shop');
   document.getElementById('btnShop').classList.toggle('active', t === 'shop');
   document.getElementById('btnChat').classList.toggle('active', t === 'chat');
 }
-
 function showItem(id) {
   const i = items.find(x => x.id === id);
   if(!i) return;
   document.getElementById('itemModalBody').innerHTML = `
     <div class="modal-head"><h3>🌸 ${i.title}</h3><button class="close-btn" onclick="closeModals()">✕</button></div>
-    <img src="${i.img}" style="width:100%;height:260px;object-fit:cover;border-radius:14px;">
+    <img src="${i.img}" style="width:100%;height:250px;object-fit:cover;border-radius:14px;">
     <div class="tag">${i.tag} • В наличии</div>
     <div style="font-size:1.3rem;font-weight:700;color:var(--primary);">${i.price.toLocaleString()} ₽</div>
-    <p style="font-size:0.86rem;color:var(--muted);line-height:1.45;"><b>Состав:</b> ${i.desc}<br><b>В комплекте:</b> аквабокс с водой, подкормка Chrysal и бесплатная открытка.</p>
-    <button class="btn-grad" style="padding:13px;font-size:0.9rem;" onclick="addCart(${i.id}); closeModals();">🛒 Добавить в корзину за ${i.price.toLocaleString()} ₽</button>
+    <p style="font-size:0.85rem;color:var(--muted);line-height:1.45;"><b>Состав:</b> ${i.desc}<br><b>В комплекте:</b> аквабокс с водой, подкормка Chrysal и бесплатная открытка.</p>
+    <button class="btn-grad" style="padding:12px;font-size:0.9rem;" onclick="addCart(${i.id}); closeModals();">🛒 Добавить в корзину за ${i.price.toLocaleString()} ₽</button>
   `;
   document.getElementById('itemModal').classList.add('open');
 }
-
 function addCart(id) {
   const i = items.find(x => x.id === id);
   cart.push(i);
   document.getElementById('cartBadge').innerText = cart.length;
   botMsg(`✅ Букет **«${i.title}»** добавлен в корзину! Нажмите «🛒 Корзина» вверху для оформления.`);
 }
-
 function openCart() {
   if(!cart.length) { alert('Корзина пуста. Выберите букет в каталоге!'); return; }
   const sum = cart.reduce((a,b) => a + b.price, 0);
   const disc = user ? Math.min(user.bonuses, 500) : 0;
   document.getElementById('cartModalBody').innerHTML = `
     <div class="modal-head"><h3>🛍️ Ваш заказ</h3><button class="close-btn" onclick="closeModals()">✕</button></div>
-    <div>${cart.map((c, idx) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:0.85rem;"><b>${c.title}</b><span>${c.price} ₽ <b style="color:var(--primary);cursor:pointer;margin-left:6px;" onclick="delCart(${idx})">✕</b></span></div>`).join('')}</div>
+    <div>${cart.map((c, idx) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:0.84rem;"><b>${c.title}</b><span>${c.price} ₽ <b style="color:var(--primary);cursor:pointer;margin-left:6px;" onclick="delCart(${idx})">✕</b></span></div>`).join('')}</div>
     <div style="text-align:right;font-weight:700;">${disc ? `<div style="color:var(--ok);font-size:0.8rem;">Бонусы: -${disc} ₽</div>` : ''}Итого: ${(sum - disc).toLocaleString()} ₽</div>
     <input class="inp" id="ordAddr" placeholder="📍 Адрес и время доставки">
     <input class="inp" id="ordCard" placeholder="💌 Текст для открытки">
@@ -297,13 +241,11 @@ function openCart() {
   `;
   document.getElementById('cartModal').classList.add('open');
 }
-
 function delCart(idx) {
   cart.splice(idx, 1);
   document.getElementById('cartBadge').innerText = cart.length;
   if(!cart.length) closeModals(); else openCart();
 }
-
 function sendOrder(total) {
   const addr = document.getElementById('ordAddr').value || 'Уточнить по телефону';
   closeModals();
@@ -313,11 +255,9 @@ function sendOrder(total) {
   cart = [];
   document.getElementById('cartBadge').innerText = '0';
 }
-
 function updateCabBtn() {
   document.getElementById('cabLabel').innerText = user ? `${user.name} (${user.bonuses} ₽)` : 'Личный кабинет';
 }
-
 function openCabinet() {
   const b = document.getElementById('cabModalBody');
   if(!user) {
@@ -342,7 +282,6 @@ function openCabinet() {
   }
   document.getElementById('cabModal').classList.add('open');
 }
-
 function regUser() {
   const name = document.getElementById('rName').value.trim();
   const phone = document.getElementById('rTel').value.trim();
@@ -354,11 +293,7 @@ function regUser() {
   openCabinet();
   botMsg(`🎉 **${name}**, вам начислено **500 бонусных рублей**! Они автоматически применятся в корзине.`);
 }
-
-function closeModals() {
-  document.querySelectorAll('.modal').forEach(m => m.classList.remove('open'));
-}
-
+function closeModals() { document.querySelectorAll('.modal').forEach(m => m.classList.remove('open')); }
 function botMsg(txt, cat = null) {
   const d = document.createElement('div');
   d.className = 'msg bot';
@@ -372,7 +307,6 @@ function botMsg(txt, cat = null) {
   box.appendChild(d);
   box.scrollTop = box.scrollHeight;
 }
-
 function userMsg(txt) {
   const d = document.createElement('div');
   d.className = 'msg user';
@@ -381,7 +315,6 @@ function userMsg(txt) {
   box.appendChild(d);
   box.scrollTop = box.scrollHeight;
 }
-
 function ask(t) { handleChat(t); }
 function sendMsg() {
   const inp = document.getElementById('chatInp');
@@ -390,7 +323,6 @@ function sendMsg() {
   inp.value = '';
   handleChat(v);
 }
-
 function handleChat(t) {
   userMsg(t);
   const q = t.toLowerCase();
@@ -412,9 +344,8 @@ function handleChat(t) {
     } else {
       botMsg(`🌸 С удовольствием помогу! Под ваш запрос (*«${t}»*) отлично подойдут наши свежие авторские букеты из роз, пионов и гортензий. Все 20 вариантов сейчас в наличии в каталоге!`, 'all');
     }
-  }, 250);
+  }, 200);
 }
-
 window.onload = init;
 </script>
 </body>
